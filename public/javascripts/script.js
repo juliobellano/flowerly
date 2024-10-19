@@ -1,4 +1,3 @@
-
 class Star {
     constructor(x, y, radius, speed) {
       this.x = x
@@ -56,6 +55,10 @@ class Star {
   const canvas = document.createElement("canvas")
   const ctx = canvas.getContext("2d")
   document.body.appendChild(canvas)
+
+  let clickX = null;
+  let clickY = null;
+  let isClicking = false;
   
   // trying to make the canvas change according to the window size
 function setCanvasSize() {
@@ -63,16 +66,13 @@ function setCanvasSize() {
   canvas.height = window.innerHeight;
 }
 
-    //initialize canvas size
-setCanvasSize();
-  
-    //Start stars background (mulai gambar bintang)
-  const stars = []
-  const starCount = 2000 //number of star
-  let clickX = null
-  let clickY = null
-  let isClicking = false
-  
+
+//Start stars background (mulai gambar bintang)
+function generateStars(){
+  stars.length = 0;
+  //dynamically generate the number of the stars according to the canvas size
+  const starCount = Math.ceil(canvas.width * canvas.height / 500); 
+
   for (let i = 0; i < starCount; i++) {
     const x = Math.random() * canvas.width
     const y = Math.random() * canvas.height
@@ -80,7 +80,13 @@ setCanvasSize();
     const speed = Math.random() * 0.1 + 0.07
     stars.push(new Star(x, y, radius, speed))
   }
-  
+}
+
+ //initialize canvas size
+setCanvasSize();
+const stars = [];
+generateStars();
+
   //animation loop
   function animate() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.1)"
@@ -99,39 +105,6 @@ setCanvasSize();
   //resize the canvas according to the window size
   window.addEventListener("resize", () => {
     setCanvasSize();
+    generateStars(); // testing to generate the stars again on resize
   })
   
-  canvas.addEventListener("mousedown", (event) => {
-    isClicking = true
-    clickX = event.clientX
-    clickY = event.clientY
-  })
-  
-  canvas.addEventListener("mousemove", (event) => {
-    if (isClicking) {
-      clickX = event.clientX
-      clickY = event.clientY
-    }
-  })
-  
-  window.addEventListener("mouseup", () => {
-    isClicking = false
-  })
-  
-  // For touch devices
-  canvas.addEventListener("touchstart", (event) => {
-    isClicking = true
-    clickX = event.touches[0].clientX
-    clickY = event.touches[0].clientY
-  })
-  
-  canvas.addEventListener("touchmove", (event) => {
-    if (isClicking) {
-      clickX = event.touches[0].clientX
-      clickY = event.touches[0].clientY
-    }
-  })
-  
-  window.addEventListener("touchend", () => {
-    isClicking = false
-  })
