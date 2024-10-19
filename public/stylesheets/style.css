@@ -6,7 +6,9 @@ body {
 }
 
 h1 {
-  color: #00B7FF;
+  text-align: center;
+  color: white;
+  font: 80px, helvetica;
 }
 
 #starfield {
