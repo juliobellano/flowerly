@@ -13,7 +13,7 @@ app.use(express.static('public'));// view static
 
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'test'});
+  res.render('index', { title: 'JJB TEAM'});
 });
 
 app.listen(port, () => {

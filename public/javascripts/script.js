@@ -108,3 +108,4 @@ generateStars();
     generateStars(); // testing to generate the stars again on resize
   })
   
+

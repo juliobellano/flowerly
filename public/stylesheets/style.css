@@ -1,9 +1,18 @@
 
 h1 {
-  text-align: center;
-  color: #ffffff;
-  padding-top: 25px;
-  padding-bottom: 15px;
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-weight: bold;
+  margin: 0; /* Remove default margin */
+  height: 100vh; /* Full viewport height */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  position: relative; /* Set position to relative for absolute positioning of the canvas */
+  color: white; /* Optional: Change text color to ensure visibility */
+  text-align: center; /* Center text alignment */
+  z-index: 1; /* Ensure it's above the canvas */
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 #starfield {
