@@ -13,14 +13,18 @@ html
         
         button(_="on click log 'clicked!'") Click Me
 
-
         div#starfield
+
         .container
-            div.square3
+            div.square3(_="on mouseenter log 'Mouse entered!ben' on click if true log 'clicked!'")
                 p Benedict 黃志斌 411855157
-            div.square3
+
+            div#benstat.hidden
+                p this will appear when u hover
+
+            div.square3(_="on mouseenter log 'Mouse entered!helga' on click if true log 'clicked!'")
                 p Helga 李韋前 411855033
-            div.square3
+            div.square3(_="on mouseenter log 'Mouse entered!jul' on click if true log 'clicked!'")
                 p Julio 鍾國榮 411855116
-            div.square3
+            div.square3(_="on mouseenter log 'Mouse entered!tim' on click if true log 'clicked!'")
                 p Timotius 張慧榮 411856114

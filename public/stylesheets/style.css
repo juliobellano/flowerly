@@ -44,7 +44,7 @@ canvas {
   z-index: -1; 
   display: block; /* Remove any extra space below the canvas */
 }
-
+/*
 .container{
   margin-top: 100vh;
   display: flex;
@@ -52,10 +52,21 @@ canvas {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}*/
+.container {
+  margin-top: 100vh;
+  width: 50vw;
+  transform: translateX(50%);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+   /*background-color: aqua; */
 }
 
 .square3 {
-  width: 400px;
+  width: 1400px;
   height: 100px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
@@ -72,6 +83,7 @@ canvas {
   font-weight: bold;
   font-size: 20px;
   color: white;
+  z-index: 3;
   
 }
 
@@ -81,6 +93,15 @@ button {
   z-index: 2; /* Ensure it's above other elements */
 }
 
+/*testing hover*/
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
 
 
 
