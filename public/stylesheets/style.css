@@ -12,8 +12,16 @@ h1 {
   transform: translate(-50%, -50%); /* Adjust for centering */
   color: white; /* Optional: Change text color to ensure visibility */
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-  transition: top 0.5s; 
+  transition: top 0.7s; 
   z-index: 1; 
+}
+
+.sticky{
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 50px;
 }
 
 
@@ -67,6 +75,11 @@ canvas {
   
 }
 
+/* found out why the button is not pressable, because of the z value */
+button {
+  position: relative; /* Add positioning context */
+  z-index: 2; /* Ensure it's above other elements */
+}
 
 
 

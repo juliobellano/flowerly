@@ -111,17 +111,16 @@ generateStars();
 
 
   // belum jadi lagi cari tau cara supaya judulnya stay di atas
-  window.addEventListener('scroll', () => {
-    const title = document.getElementById('jjb-team');
+  window.addEventListener("scroll", function() {
+    const title = document.getElementById("jjb-team");
+    const scrollPosition = window.scrollY; // Current scroll position
   
-    // Check if the user has scrolled down
-    if (window.scrollY > 0) {
-      title.style.top = '0'; // Move title to the top
-      title.style.transform = 'translate(-50%, 0)'; // Adjust transform
+    if (scrollPosition > 50) { // Change this value to control when it sticks
+      title.classList.add("sticky");
     } else {
-      title.style.top = '50%'; // Move title back to center
-      title.style.transform = 'translate(-50%, -50%)'; // Adjust transform
+      title.classList.remove("sticky");
     }
   });
   
+
 
