@@ -109,3 +109,19 @@ generateStars();
   })
   
 
+
+  // belum jadi lagi cari tau cara supaya judulnya stay di atas
+  window.addEventListener('scroll', () => {
+    const title = document.getElementById('jjb-team');
+  
+    // Check if the user has scrolled down
+    if (window.scrollY > 0) {
+      title.style.top = '0'; // Move title to the top
+      title.style.transform = 'translate(-50%, 0)'; // Adjust transform
+    } else {
+      title.style.top = '50%'; // Move title back to center
+      title.style.transform = 'translate(-50%, -50%)'; // Adjust transform
+    }
+  });
+  
+

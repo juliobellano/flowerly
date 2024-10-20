@@ -1,19 +1,21 @@
-
+/*masih test how to put the judul di paling atas*/
 h1 {
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
   font-weight: bold;
   margin: 0; /* Remove default margin */
-  height: 100vh; /* Full viewport height */
   display: flex; /* Use flexbox for centering */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  position: relative; /* Set position to relative for absolute positioning of the canvas */
+  position: absolute; /* Set position to absolute for easy movement */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for centering */
   color: white; /* Optional: Change text color to ensure visibility */
-  text-align: center; /* Center text alignment */
-  z-index: 1; /* Ensure it's above the canvas */
-  color: white;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  transition: top 0.5s; 
+  z-index: 1; 
 }
+
 
 #starfield {
   position: fixed;
@@ -34,6 +36,37 @@ canvas {
   z-index: -1; 
   display: block; /* Remove any extra space below the canvas */
 }
+
+.container{
+  margin-top: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.square3 {
+  width: 400px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.5); /* for the Glowing effect */
+  color: white;
+  margin: 20px;
+
+  /* text settings*/
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  
+}
+
 
 
 
