@@ -10,8 +10,6 @@ app.set('views', './views');
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.static('public'));// view static
 
-
-
 app.get('/', (req, res) => {
   res.render('index', { title: 'JJB TEAM'});
 });
