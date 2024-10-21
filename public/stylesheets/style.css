@@ -12,8 +12,16 @@ h1 {
   transform: translate(-50%, -50%); /* Adjust for centering */
   color: white; /* Optional: Change text color to ensure visibility */
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-  transition: top 0.5s; 
+  transition: top 0.7s; 
   z-index: 1; 
+}
+
+.sticky{
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 50px;
 }
 
 
@@ -37,23 +45,29 @@ canvas {
   display: block; /* Remove any extra space below the canvas */
 }
 
-.container{
+ 
+.container {
   margin-top: 100vh;
+  width: 50vw;
+  transform: translateX(50%);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+   /*background-color: aqua; */
 }
 
 .square3 {
-  width: 400px;
+  width: 1400px;
   height: 100px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.5); /* for the Glowing effect */
   color: white;
   margin: 20px;
+
+  
 
   /* text settings*/
   display: flex;
@@ -64,10 +78,65 @@ canvas {
   font-weight: bold;
   font-size: 20px;
   color: white;
+  z-index: 3;
+  
+}
+
+.square3 p {
+  margin: 0;
+  padding: 0;
+}
+
+.square2 {
+  width: 1400px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.5); /* for the Glowing effect */
+  color: white;
+  margin: 20px;
+
+  
+
+  /* text settings*/
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  z-index: 3;
   
 }
 
 
+/* found out why the button is not pressable, because of the z value */
+button {
+  position: relative; /* Add positioning context */
+  z-index: 2; /* Ensure it's above other elements */
+}
+
+/*testing hover*/
+
+/* first make the box hidden (completelt) instead of being transparent*/
+
+.hidden {
+  opacity: 0;
+  max-height: 0;
+  transform: scale(0.9);
+  overflow: hidden; /* Prevent content from spilling out during collapse */
+  transition: opacity 0.5s ease, max-height 0.5s ease, transform 0.5s ease; /* Smooth transition */
+  pointer-events: none; /* Disable interaction while hidden */
+}
+
+.visible {
+  opacity: 1;
+  max-height: 200px; /* Adjust to fit the content height */
+  transform: scale(1); /* Return to normal size */
+  pointer-events: auto; /* Enable interaction */
+}
 
 
 
