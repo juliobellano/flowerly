@@ -44,15 +44,8 @@ canvas {
   z-index: -1; 
   display: block; /* Remove any extra space below the canvas */
 }
-/*
-.container{
-  margin-top: 100vh;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}*/
+
+ 
 .container {
   margin-top: 100vh;
   width: 50vw;
@@ -74,6 +67,8 @@ canvas {
   color: white;
   margin: 20px;
 
+  
+
   /* text settings*/
   display: flex;
   justify-content: center; 
@@ -87,6 +82,31 @@ canvas {
   
 }
 
+.square2 {
+  width: 1400px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.5); /* for the Glowing effect */
+  color: white;
+  margin: 20px;
+
+  
+
+  /* text settings*/
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  z-index: 3;
+  
+}
+
+
 /* found out why the button is not pressable, because of the z value */
 button {
   position: relative; /* Add positioning context */
@@ -95,12 +115,22 @@ button {
 
 /*testing hover*/
 
+/* first make the box hidden (completelt) instead of being transparent*/
+
 .hidden {
-  display: none;
+  opacity: 0;
+  max-height: 0;
+  transform: scale(0.9);
+  overflow: hidden; /* Prevent content from spilling out during collapse */
+  transition: opacity 0.5s ease, max-height 0.5s ease, transform 0.5s ease; /* Smooth transition */
+  pointer-events: none; /* Disable interaction while hidden */
 }
 
-.show {
-  display: block;
+.visible {
+  opacity: 1;
+  max-height: 200px; /* Adjust to fit the content height */
+  transform: scale(1); /* Return to normal size */
+  pointer-events: auto; /* Enable interaction */
 }
 
 

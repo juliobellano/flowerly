@@ -16,15 +16,26 @@ html
         div#starfield
 
         .container
-            div.square3(_="on mouseenter log 'Mouse entered!ben' on click if true log 'clicked!'")
+            div.square3(_="on mouseenter add .visible to #hidden-square1 on mouseleave remove .visible from #hidden-square1")
                 p Benedict 黃志斌 411855157
+            div#hidden-square1.square3.hidden
+                p bio desc etc
 
-            div#benstat.hidden
-                p this will appear when u hover
+            div.square3(_="on mouseenter add .visible to #hidden-square33 on mouseleave remove .visible from #hidden-square33") tees hover
+            div#hidden-square33.square3.hidden
+                p bio desc etc
 
-            div.square3(_="on mouseenter log 'Mouse entered!helga' on click if true log 'clicked!'")
+            div.square3(_="on mouseenter add .visible to #hidden-square2 on mouseleave remove .visible from #hidden-square2")
                 p Helga 李韋前 411855033
-            div.square3(_="on mouseenter log 'Mouse entered!jul' on click if true log 'clicked!'")
+            div#hidden-square2.square3.hidden
+                p bio desc etc
+            
+            div.square3(_="on mouseenter add .visible to #hidden-square3 on mouseleave remove .visible from #hidden-square3")
                 p Julio 鍾國榮 411855116
-            div.square3(_="on mouseenter log 'Mouse entered!tim' on click if true log 'clicked!'")
+            div#hidden-square3.square3.hidden
+                p bio desc etc
+
+            div.square3(_="on mouseenter add .visible to #hidden-square4 on mouseleave remove .visible from #hidden-square4")
                 p Timotius 張慧榮 411856114
+            div#hidden-square4.square3.hidden
+                p bio desc etc
