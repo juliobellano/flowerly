@@ -52,14 +52,14 @@ h1 {
    /*background-color: aqua; */
 }
 .square3 {
-  width: 1400px;
+  width: 500px;
   height: 100px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.5); /* for the Glowing effect */
   color: white;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 70px;
+  margin-bottom: 70px;
   /* text settings*/
   display: flex;
   justify-content: center; 
@@ -70,11 +70,41 @@ h1 {
   font-size: 20px;
   color: white;
   z-index: 3;
-  
 }
 .square3:hover{
-  transform: scale(0.9);
+  background-color: #444;
+  transform: translateX(-50px);
 }
+.bio-container {
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  position: absolute;
+  right: -420px; /* Position it off-screen initially */
+  width: 400px; /* Set a fixed width */
+  height: 0; /* Start with no height */
+  /* background-color: #f9f9f9; */
+  color: white;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.7),
+    /* First shadow */ 2px 2px 0 rgba(0, 0, 0, 0.7),
+    /* Second shadow, slightly offset */ 3px 3px 2px rgba(0, 0, 0, 0.7); /* Third shadow with blur */
+  padding-top: 30px;
+  border: 1px solid #ddd;
+  opacity: 0;
+  overflow: hidden; 
+  transition: all 2s ease;
+}
+
+.bio-container.visible {
+  height: 83.5%; /* Expand to full height */
+  padding-top: 30px;
+  opacity: 1;
+  right: -300px; /* Slide in */
+  transition: height 2s ease;
+}
+
 .hidden {
   opacity: 0;
   max-height: 0;
@@ -85,7 +115,7 @@ h1 {
 }
 .visible {
   opacity: 1;
-  max-height: 200px; /* Adjust to fit the content height */
+  max-height: 1000px; /* Adjust to fit the content height */
   transform: scale(1); /* Return to normal size */
   pointer-events: auto; /* Enable interaction */
 }
@@ -104,7 +134,7 @@ h1 {
   font-size: 28px;
   padding: 20px;
   width: 200px;
-  height: 200px;
+  height: 200px;  
   transition: all 1.5s;
   cursor: pointer;
   z-index: 4;
