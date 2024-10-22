@@ -8,17 +8,47 @@ html
         script(src="https://unpkg.com/hyperscript.org@0.9.11")
 
     body
-        h1#jjb-team JJB Team
-        
         div#starfield
-        .container
-            div.square3
-                p Benedict 黃志斌 411855157
-            div.square3
-                p Helga 李韋前 411855033
-            div.square3
-                p Julio 鍾國榮 411855116
-            div.square3
-                p Timotius 張慧榮 411856114
+        button.button(_="on click  transition my *height to 100vh then transition my *width to 100vw then wait 1s then show .container then transition .container's opacity to 1 then wait 0.5s then transition opacity to 0 over 2000ms then set my style.zIndex to 2") Click it to know about us
         
+        .container(style="display: none; opacity: 0;")
+            h1#jjb-team JJB Team
+            .container2
+                div.square3(_="on mouseenter add .visible to #hidden-square1 on mouseleave remove .visible from #hidden-square1")
+                    p Benedict 黃志斌 411855157
+                div#hidden-square1.bio-container
+                    div.avatar
+                        img(src="benedict.jpg", alt="Benedict profile")
+                    h2 Name : Benedict 黃志斌
+                    h3 Age : 20
+                    h3 Hobby : Billiard
+                    h3 About me : I like javascript and billiard.
 
+                div.square3(_="on mouseenter add .visible to #hidden-square2 on mouseleave remove .visible from #hidden-square2")
+                    p Helga 李韋前 411855033
+                div#hidden-square2.bio-container
+                    div.avatar
+                        img(src="helga.jpeg", alt="Helga profile")
+                    h2 Name : Helga 李韋前
+                    h3 Age : 20
+                    h3 Hobby : Basketball 
+                    h3 About me : I enjoy physical activities like going to the gym and play basketball
+                div.square3(_="on mouseenter add .visible to #hidden-square3 on mouseleave remove .visible from #hidden-square3")
+                    p Julio 鍾國榮 411855116
+                div#hidden-square3.bio-container
+                    div.avatar
+                        img(src="timo.jpg", alt="Julio profile")
+                    h2 Name : Julio 鍾國榮
+                    h3 Age : 20
+                    h3 Hobby : Gym
+                    h3 About me : I'm the strongest at the gym and programming language.
+
+                div.square3(_="on mouseenter add .visible to #hidden-square4 on mouseleave remove .visible from #hidden-square4")
+                    p Timotius 張慧榮 411856114
+                div#hidden-square4.bio-container
+                    div.avatar
+                        img(src="timo.jpg", alt="timo profile")
+                    h2 Name : Timotius 張慧榮
+                    h3 Age : 20
+                    h3 Hobby : trading
+                    h3 About me : when I commited myself to something, I will get it.
