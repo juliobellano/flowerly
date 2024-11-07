@@ -1,0 +1,33 @@
+body {
+     padding: 0;
+     margin: 0;
+}
+
+#container {
+     background-color: lightgray;
+     background-size: 4em 4em;
+     height: 100vh;
+}
+
+.flower {
+     width: 100px;
+     height: 100px;
+     background-color: #afda9f;
+     border-radius: 5px;
+     cursor: pointer;
+     position: fixed;
+}
+
+/* .flower {
+     width: 100px;
+     height: 100px;
+     background-color: #ff69b4;
+     border-radius: 50%;
+     position: absolute;
+     cursor: move;
+} */
+
+#original-flower {
+     cursor: default;
+     margin: 10vw;
+}

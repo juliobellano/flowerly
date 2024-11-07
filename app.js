@@ -1,7 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const app = express()
-const PORT = 3000
+const port = 3000
 
 app.set("view engine", "pug") // pug as a template engine
 app.set("views", "./views")
