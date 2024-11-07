@@ -10,9 +10,16 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public")) // view static
 
 app.get("/", (req, res) => {
-  res.render("index", { title: "JJB TEAM" })
+     res.render("index", { title: "JJB TEAM" })
 })
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server is running on http://0.0.0.0:${PORT}`)
+app.get("/", (req, res) => {
+     res.render("index", { title: "JJB TEAM" })
+})
+app.get("/about", (req, res) => {
+     res.render("about")
+})
+
+app.listen(port, () => {
+     console.log(`App is running on http://localhost:${port}`)
 })
