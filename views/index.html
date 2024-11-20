@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Blank White Website</title>
+    <style>
+        body {
+            background-color: #FAEDCB;
+            background-image: radial-gradient(black 1px, transparent 0);
+            background-size: 40px 40px;
+            background-position: -19px -19px;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Helvetica, sans-serif;
+            font-weight: bold;
+        }
+      
+        header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          padding: 20px 0;
+          text-align: center;
+          z-index: 1000;
+        }
+
+        .header-list {
+          top: 20px;
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+          padding: 0;
+          margin: 0;
+        }
+
+        .header.list li {
+          display: inline;
+        }
+
+        .header.list a {
+          text-decoration: none;
+          color: black;
+          font-weight: bold;
+        }
+
+        .header-list a:hover {
+          color: #007BFF;
+        }
+        
+        h1 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 4.5em;
+          color: black;
+          transition: all 1s ease; /* Smooth transition */
+        }
+
+        h1.moved {
+          top: 10px;
+          left: 10px;
+          transform: translate(0, 0);
+          font-size: 1.5em;
+        }
+
+        .flowertype {
+          background-color: white;
+          padding: 20px;
+          margin: 20px;
+          text-align: center;
+          cursor: pointer;
+          width: 150px;
+        }
+
+    </style>
+</head>
+
+  <body onload="init()" >
+    <header>
+        <nav>
+            <ul class="header-list">
+                <li><a href="/about">about us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1 _="on load wait 1s then add .moved to me">FLOWERLY</h1>
+
+    <div id ="flowers">
+      <div class="flowertype">
+        sunflower
+      </div>
+      <div class="flowertype">
+        gerberas
+      </div>
+      <div class="flowertype">
+        baby breathes
+      </div>      
+    </div>
+
+    <script src="/javascripts/drag.js"></script>
+    <script src="https://unpkg.com/hyperscript.org"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"></script>
+  </body>
+</html>
