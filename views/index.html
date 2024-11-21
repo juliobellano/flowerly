@@ -36,6 +36,18 @@
           height: 100%;
           padding: 20px;
           text-align: center;
+          overflow: hidden;
+          position: relative;
+        }
+
+        #dropspot, #dropspot1, #dropspot2, #dropspot3 {
+          border: 2px solid black;
+          width: 200px;
+          display: flex;
+          height: 300 px;
+          text-align: center;
+          overflow: hidden;
+          position: relative;
         }
 
         .header-list {
@@ -85,15 +97,18 @@
           text-align: center;
           cursor: pointer;
           width: 150px;
+          position: relative;
+          overflow: hidden;
         }
 
         .spot {
-          background-color: white;
+          position: fixed;
+          right: 0;
+          height: 100%;
           padding: 20px;
-          margin: 20px;
           text-align: center;
-          cursor: pointer;
-          width: 150px;
+          overflow: visible;
+          position: relative;
         }
 
 
@@ -121,19 +136,11 @@
         baby breathes
       </div>      
     </div>
-    <div id ="dropspot">
-      <div class="spot">
-        _____1
-      </div>
-      <div class="spot">
-        _____2
-      </div>
-      <div class="spot">
-        _____3
-      </div>      
-    </div>
-
-
+    
+    <div id ="dropspot"></div>
+    <div id ="dropspot1"></div>
+    <div id ="dropspot2"></div>
+    <div id ="dropspot3"></div>
 
 
     <script src="/javascripts/drag.js"></script>
