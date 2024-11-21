@@ -30,6 +30,14 @@
           z-index: 1000;
         }
 
+        #flowers {
+          position: fixed;
+          right: 0;
+          height: 100%;
+          padding: 20px;
+          text-align: center;
+        }
+
         .header-list {
           top: 20px;
           display: flex;
@@ -79,6 +87,16 @@
           width: 150px;
         }
 
+        .spot {
+          background-color: white;
+          padding: 20px;
+          margin: 20px;
+          text-align: center;
+          cursor: pointer;
+          width: 150px;
+        }
+
+
     </style>
 </head>
 
@@ -103,9 +121,25 @@
         baby breathes
       </div>      
     </div>
+    <div id ="dropspot">
+      <div class="spot">
+        _____1
+      </div>
+      <div class="spot">
+        _____2
+      </div>
+      <div class="spot">
+        _____3
+      </div>      
+    </div>
+
+
+
 
     <script src="/javascripts/drag.js"></script>
     <script src="https://unpkg.com/hyperscript.org"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.css">
+  
   </body>
 </html>

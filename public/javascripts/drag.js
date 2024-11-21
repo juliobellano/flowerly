@@ -1,3 +1,3 @@
 function init() {
-    dragula([document.querySelector("#flowers")]);
+    dragula([document.querySelector("#flowers"), document.querySelector("#dropspot")]);
   }
