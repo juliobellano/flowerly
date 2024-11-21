@@ -1,4 +1,22 @@
-/*masih test how to put the judul di paling atas*/
+canvas {
+  position: fixed; /* Make the canvas fixed to cover the whole window */
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  z-index: -1; 
+  display: block; /* Remove any extra space below the canvas */
+}
+
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
 h1 {
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
   font-weight: bold;
@@ -28,11 +46,9 @@ h1 {
 #starfield {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 50px;
 }
 
 canvas {
@@ -57,7 +73,6 @@ canvas {
   align-items: center;
    /*background-color: aqua; */
 }
-
 .square3 {
   width: 1400px;
   height: 100px;
