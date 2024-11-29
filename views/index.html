@@ -23,37 +23,35 @@
                }
 
                header {
+                    background-color: maroon;
                     position: fixed;
                     top: 0;
-                    left: 0;
+                    /* left: 0; */
                     width: 100%;
-                    padding: 20px 0;
-                    text-align: center;
                     z-index: 1000;
+                    position: fixed;
+                    padding: 20px;
                }
 
                #flowers {
-                    position: fixed;
+                    /* position: absolute; */
                     right: 0;
-                    height: 100%;
+                    /* height: 100%; */
                     padding: 20px;
                     text-align: center;
+                    border: 1px solid black;
                }
 
                .header-list {
-                    top: 20px;
-                    display: flex;
+                    /* background-color: #faedcb; */
                     gap: 20px;
-                    justify-content: center;
+                    display: flex;
+                    justify-content: space-between;
                     padding: 0;
                     margin: 0;
                }
 
-               .header.list li {
-                    display: inline;
-               }
-
-               .header.list a {
+               a {
                     text-decoration: none;
                     color: black;
                     font-weight: bold;
@@ -97,12 +95,28 @@
                     cursor: pointer;
                     width: 150px;
                }
+               #dropspot {
+                    border: 1px solid black;
+                    height: 50vh;
+               }
+               .container {
+                    display: grid;
+                    grid-template-columns: 1fr 3.5fr 1fr;
+                    gap: 200px;
+               }
+               .nav-bar {
+                    /* background-color: white; */
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 20px;
+               }
           </style>
      </head>
 
      <body onload="init()">
           <header>
-               <nav>
+               <nav class="nav-bar">
+                    <div class="logo">FLOWERLY</div>
                     <ul class="header-list">
                          <li><a href="/home">Home</a></li>
                          <li><a href="/about">about us</a></li>
@@ -112,18 +126,19 @@
                </nav>
           </header>
           <h1 _="on load wait 1s then add .moved to me">FLOWERLY</h1>
+          <div class="container">
+               <div id="flowers">
+                    <div class="flowertype">sunflower</div>
+                    <div class="flowertype">gerberas</div>
+                    <div class="flowertype">baby breathes</div>
+               </div>
 
-          <div id="flowers">
-               <div class="flowertype">sunflower</div>
-               <div class="flowertype">gerberas</div>
-               <div class="flowertype">baby breathes</div>
+               <div id="dropspot">
+                    <div class="spot">_____1</div>
+                    <div class="spot">_____2</div>
+                    <div class="spot">_____3</div>
+               </div>
           </div>
-          <div id="dropspot">
-               <div class="spot">_____1</div>
-               <div class="spot">_____2</div>
-               <div class="spot">_____3</div>
-          </div>
-
           <script src="/javascripts/drag.js"></script>
           <script src="https://unpkg.com/hyperscript.org"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"></script>
