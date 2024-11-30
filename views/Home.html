@@ -9,6 +9,11 @@
                href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
                rel="stylesheet"
           />
+          <!-- icon stylesheet -->
+          <link
+               rel="stylesheet"
+               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+          />
 
           <style>
                * {
@@ -35,7 +40,7 @@
                     z-index: 100;
                     padding: 20px;
                }
-               nav {
+               .nav-bar {
                     /* background-color: lightgoldenrodyellow; */
                     display: flex;
                     justify-content: space-between;
@@ -71,6 +76,9 @@
                     background-color: peru;
                     color: black;
                }
+               .nav-bar :where(#menu-close-button, #menu-open-button) {
+                    display: none;
+               }
                .logo {
                     /* background-color: aliceblue; */
                     color: black;
@@ -79,6 +87,78 @@
                     padding: 0rem 1rem;
                     display: inline;
                }
+               .nav-bar .log-in-button {
+                    background-color: maroon;
+                    color: floralwhite;
+                    border: none;
+                    cursor: pointer;
+                    border-radius: 30px;
+                    width: 100px;
+                    height: 45px;
+                    transition: 0.3s;
+               }
+               .nav-bar .log-in-button:hover {
+                    background-color: maroon;
+                    box-shadow: 0 0 0 5px firebrick;
+                    color: peru;
+               }
+
+               /* get started css button */
+               .cssbuttons-io-button {
+                    background: #e41111;
+                    color: white;
+                    font-family: inherit;
+                    padding: 0.35em;
+                    padding-left: 1.2em;
+                    font-size: 17px;
+                    font-weight: 500;
+                    border-radius: 0.9em;
+                    border: none;
+                    letter-spacing: 0.05em;
+                    display: flex;
+                    align-items: center;
+                    box-shadow: inset 0 0 1.6em -0.6em #fc0000;
+                    overflow: hidden;
+                    position: relative;
+                    height: 2.8em;
+                    padding-right: 3.3em;
+                    cursor: pointer;
+               }
+
+               .cssbuttons-io-button .icon {
+                    background: white;
+                    margin-left: 1em;
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 2.2em;
+                    width: 2.2em;
+                    border-radius: 0.7em;
+                    box-shadow: 0.1em 0.1em 0.6em 0.2em #b95252;
+                    right: 0.3em;
+                    transition: all 0.3s;
+               }
+
+               .cssbuttons-io-button:hover .icon {
+                    width: calc(100% - 0.6em);
+               }
+
+               .cssbuttons-io-button .icon svg {
+                    width: 1.1em;
+                    transition: transform 0.3s;
+                    color: #b95252;
+               }
+
+               .cssbuttons-io-button:hover .icon svg {
+                    transform: translateX(0.1em);
+               }
+
+               .cssbuttons-io-button:active .icon {
+                    transform: scale(0.95);
+               }
+
+               /* hero styling */
 
                .hero {
                     background-color: antiquewhite;
@@ -108,7 +188,7 @@
                     margin: 24px 0 40px;
                     font-size: 1.3rem;
                }
-               .get-started-button {
+               /* .get-started-button {
                     padding: 10px 26px;
                     color: white;
                     border-radius: 30px;
@@ -120,22 +200,27 @@
                     color: black;
                     background-color: white;
                     border-color: black;
-               }
+               } */
 
                /* .hero-image {
                     background-color: aqua;
                     width: 300px;
                } */
+               .demo-preview {
+                    background-color: aliceblue;
+               }
                .demo-preview > h2 {
                     display: flex;
                     justify-content: center;
+                    font-size: 2.9rem;
                }
                .demo-preview > p {
+                    font-size: 1.1rem;
                     display: flex;
                     justify-content: center;
                }
                .steps {
-                    background-color: antiquewhite;
+                    /* background-color: antiquewhite; */
                     display: flex;
                     justify-content: center;
                     gap: 1rem;
@@ -149,14 +234,93 @@
                     border-radius: 5px;
                     text-align: center;
                }
+
+               .footer-bar {
+                    color: white;
+                    background-color: #1c1c1c;
+               }
+               /* media query */
+               @media screen and (max-width: 900px) {
+                    .nav-bar .nav-menu {
+                         display: block;
+                         position: fixed;
+                         height: 100%;
+                         width: 250px;
+                         top: 0;
+                         left: -250px;
+                         background-color: white;
+                         display: flex;
+                         flex-direction: column;
+                         align-items: center;
+                         padding-top: 120px;
+                         transition: left 0.2s ease;
+                    }
+                    body.show-mobile-menu header::before {
+                         content: "";
+                         position: fixed;
+                         left: 0;
+                         top: 0;
+                         height: 100%;
+                         width: 100%;
+                         backdrop-filter: blur(5px);
+                         background: rgba(0, 0, 0, 0.5);
+                    }
+                    body.show-mobile-menu .nav-bar .nav-menu {
+                         left: 0;
+                    }
+                    .nav-bar .log-in-button {
+                         display: none;
+                    }
+                    .nav-bar :where(#menu-close-button, #menu-open-button) {
+                         font-size: 1.3rem;
+                         display: block;
+                    }
+                    .nav-bar #menu-close-button {
+                         position: absolute;
+                         right: 34px;
+                         top: 34px;
+                    }
+                    .nav-bar #menu-open-button {
+                         position: absolute;
+                         color: white;
+                         right: 30px;
+                         top: 29px;
+                    }
+                    .nav-items .nav-link {
+                         color: black;
+                         display: block;
+                         margin-top: 10px;
+                         font-size: 1.2rem;
+                    }
+
+                    /* hero styles */
+                    .hero .content {
+                         flex-direction: column-reverse;
+                         gap: 50px;
+                         text-align: center;
+                         padding: 30px 20px 20px;
+                         justify-content: center;
+                    }
+                    .hero .hero-image-wrapper {
+                         max-width: 270px;
+                         margin-right: 0;
+                    }
+                    .hero .hero-details :is(.headline, .subheadline) {
+                         max-width: 100%;
+                    }
+               }
           </style>
      </head>
 
      <body>
           <header>
-               <nav>
+               <nav class="nav-bar content">
                     <a href="#" class="logo">FLOWERLY</a>
                     <ul class="nav-menu">
+                         <button
+                              id="menu-close-button"
+                              class="fas fa-times"
+                         ></button>
                          <li class="nav-items">
                               <a href="#" class="nav-link">Home</a>
                          </li>
@@ -170,10 +334,11 @@
                               <a href="#" class="nav-link">Contact</a>
                          </li>
                     </ul>
-                    <button class="Log-in">Log in</button>
+                    <button id="menu-open-button" class="fas fa-bars"></button>
+                    <button class="log-in-button" role="button">Log in</button>
                </nav>
           </header>
-          <main>
+          <main lc>
                <!-- hero -->
                <section class="hero">
                     <div class="content">
@@ -187,8 +352,25 @@
                                    card with a stunning selection of digital
                                    flowers.
                               </p>
-                              <button class="get-started-button">
-                                   Get Started
+                              <button class="cssbuttons-io-button">
+                                   Get started
+                                   <div class="icon">
+                                        <svg
+                                             height="24"
+                                             width="24"
+                                             viewBox="0 0 24 24"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                             <path
+                                                  d="M0 0h24v24H0z"
+                                                  fill="none"
+                                             ></path>
+                                             <path
+                                                  d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                  fill="currentColor"
+                                             ></path>
+                                        </svg>
+                                   </div>
                               </button>
                          </div>
                          <div class="hero-image-wrapper">
@@ -208,28 +390,44 @@
                     </p>
                     <div class="steps">
                          <div class="step">
-                              <img src="choose-flowers.svg" alt="Step 1" />
+                              <img
+                                   src="/home/step-1.jpg"
+                                   alt="Step 1"
+                                   class="styled-image"
+                              />
                               <h3>Step 1: Choose Flowers</h3>
                               <p>
                                    Select from a wide variety of digital blooms.
                               </p>
                          </div>
                          <div class="step">
-                              <img src="arrange-flowers.svg" alt="Step 2" />
+                              <img
+                                   src="/home/step-2(2).jpg"
+                                   alt="Step 2"
+                                   class="styled-image"
+                              />
                               <h3>Step 2: Arrange Your Bouquet</h3>
                               <p>Drag, drop, and design your masterpiece.</p>
                          </div>
                          <div class="step">
-                              <img src="personalize-message.svg" alt="Step 3" />
+                              <img
+                                   src="/home/step-3.jpg"
+                                   alt="Step 3"
+                                   class="styled-image"
+                              />
                               <h3>Step 3: Add a Message</h3>
                               <p>Write a heartfelt note to make it unique.</p>
                          </div>
                     </div>
                </div>
+               <div class="footer-bar">
+                    <div class="footer-details content">
+                         <div class="logo">FLOWERLY</div>
+                         <h2>Get The Free App</h2>
+                    </div>
+               </div>
           </main>
-          <div class="get-app-container">
-               <div class="logo">Flowerly</div>
-               <h2>Get The Free App</h2>
-          </div>
+          <!-- <script src="public/javascripts/UIscript.js"></script> -->
+          <script src="/javascripts/UIscript.js"></script>
      </body>
 </html>
