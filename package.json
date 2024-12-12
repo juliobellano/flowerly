@@ -1,9 +1,10 @@
 {
   "name": "proj",
   "version": "0.0.0",
+  "main": "main.js",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "concurrently \"node app.js\" \"electron .\""
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -13,5 +14,9 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "pug": "^3.0.3"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "electron": "^33.2.1"
   }
 }

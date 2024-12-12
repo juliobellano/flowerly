@@ -1,8 +1,9 @@
-const express = require("express")
-const bodyParser = require("body-parser")
-const app = express()
-const port = 3000
-const path = require("path")
+const express = require('express');
+const bodyParser = require('body-parser'); 
+const app = express();
+const port = 3000;
+const path = require('path');
+
 
 app.set("view engine", "pug") // pug as a template engine
 app.set("views", "./views")
