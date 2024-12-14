@@ -3,7 +3,17 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 const path = require('path');
+const mongoose = require("mongoose"); //add mongoose package
 
+//connect to mongodb
+mongoose.connect("mongodb+srv://admin:mcKb48Wfg7s1XCHN@flowerly.p0ess.mongodb.net/?retryWrites=true&w=majority&appName=flowerly")
+.then(()=> {
+     console.log("Connected to database!");
+})
+.catch(() => {
+     console.log("Connection Failed");
+     
+})
 
 app.set("view engine", "pug") // pug as a template engine
 app.set("views", "./views")
