@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>git log origin/your-branch..HEAD --oneline
+
+     <head>
+          <title>Blank White Website</title>
+          <style>
+               body {
+                    background-color: #faedcb;
+                    background-image: radial-gradient(black 1px, transparent 0);
+                    background-size: 40px 40px;
+                    background-position: -19px -19px;
+                    margin: 0;
+                    padding: 0;
+                    height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: Helvetica, sans-serif;
+                    font-weight: bold;
+               }
+               ul {
+                    list-style: none;
+               }
+
+               header {
+                    background-color: maroon;
+                    position: fixed;
+                    top: 0;
+                    /* left: 0; */
+                    width: 100%;
+                    z-index: 1000;
+                    position: fixed;
+                    padding: 20px;
+               }
+
+               #flowers {
+                    /* position: absolute; */
+                    right: 0;
+                    /* height: 100%; */
+                    padding: 20px;
+                    text-align: center;
+                    border: 1px solid black;
+               }
+
+               .header-list {
+                    /* background-color: #faedcb; */
+                    gap: 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0;
+                    margin: 0;
+               }
+
+               a {
+                    text-decoration: none;
+                    color: black;
+                    font-weight: bold;
+               }
+
+               .header-list a:hover {
+                    color: #007bff;
+               }
+
+               h1 {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 4.5em;
+                    color: black;
+                    transition: all 1s ease; /* Smooth transition */
+               }
+
+               h1.moved {
+                    top: 10px;
+                    left: 10px;
+                    transform: translate(0, 0);
+                    font-size: 1.5em;
+               }
+
+               .flowertype {
+                    background-color: white;
+                    padding: 20px;
+                    margin: 20px;
+                    text-align: center;
+                    cursor: pointer;
+                    width: 150px;
+               }
+
+               .spot {
+                    background-color: white;
+                    padding: 20px;
+                    margin: 20px;
+                    text-align: center;
+                    cursor: pointer;
+                    width: 150px;
+               }
+               #dropspot {
+                    border: 1px solid black;
+                    height: 50vh;
+               }
+               .container {
+                    display: grid;
+                    grid-template-columns: 1fr 3.5fr 1fr;
+                    gap: 200px;
+               }
+               .nav-bar {
+                    /* background-color: white; */
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0 20px;
+               }
+          </style>
+     </head>
+
+     <body onload="init()">
+          <header>
+               <nav class="nav-bar">
+                    <div class="logo">FLOWERLY</div>
+                    <ul class="header-list">
+                         <li><a href="/home">Home</a></li>
+                         <li><a href="/about">about us</a></li>
+                         <li><a href="/about">about us</a></li>
+                         <li><a href="/about">about us</a></li>
+                    </ul>
+               </nav>
+          </header>
+          <h1 _="on load wait 1s then add .moved to me">FLOWERLY</h1>
+          <div class="container">
+               <div id="flowers">
+                    <div class="flowertype">sunflower</div>
+                    <div class="flowertype">gerberas</div>
+                    <div class="flowertype">baby breathes</div>
+               </div>
+
+               <div id="dropspot">
+                    <div class="spot">_____1</div>
+                    <div class="spot">_____2</div>
+                    <div class="spot">_____3</div>
+               </div>
+          </div>
+          <script src="/javascripts/drag.js"></script>
+          <script src="https://unpkg.com/hyperscript.org"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"></script>
+          <link
+               rel="stylesheet"
+               href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.css"
+          />
+     </body>
+</html>
