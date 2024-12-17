@@ -534,7 +534,7 @@
                                         <svg
                                              height="24"
                                              width="24"
-                                             viewBox="0 0 24 24"
+                                             viewbox="0 0 24 24"
                                              xmlns="http://www.w3.org/2000/svg"
                                         >
                                              <path
@@ -647,7 +647,11 @@
                          </form>
                          <div class="oauth-login">
                               <p>Or sign in with:</p>
-                              <button class="oauth-button" id="google-login">
+                              <button
+                                   class="oauth-button"
+                                   id="google-login"
+                                   onclick="window.location.href='/auth/google'"
+                              >
                                    <img
                                         src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
                                         alt="Google Logo"
@@ -661,7 +665,7 @@
                          </div>
                          <div class="signup-link">
                               Don't have an account?
-                              <a href="/register">Sign up</a>
+                              <a href="/auth/register">Sign up</a>
                          </div>
                     </div>
                </div>

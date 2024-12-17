@@ -1,51 +1,9 @@
-const express = require("express")
-const path = require("path")
+const User = require("../models/User")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const User = require("../models/User")
-const router = express.Router()
-const passport = require("passport")
 
-// Serve login.html
-router.get("/login", (req, res) => {
-     res.sendFile(path.join(__dirname, "../views/login.html"))
-})
-
-// Serve register.html
-router.get("/register", (req, res) => {
-     res.sendFile(path.join(__dirname, "../views/register.html"))
-})
-
-// Redirect to Google login
-router.get(
-     "/google",
-     passport.authenticate("google", {
-          scope: ["profile", "email"],
-          prompt: "select_account",
-     })
-)
-
-// Google callback
-router.get(
-     "/google/callback",
-     passport.authenticate("google", {
-          failureRedirect: "/login",
-          successRedirect: "/create",
-          failureFlash: true,
-     })
-)
-
-// Logout route
-router.get("/logout", (req, res) => {
-     req.logout((err) => {
-          if (err) return next(err)
-          res.clearCookie("token")
-          res.redirect("/")
-     })
-})
-
-// Registration logic
-router.post("/register", async (req, res) => {
+// Register User
+exports.registerUser = async (req, res) => {
      const { email, password } = req.body
      try {
           const existingUser = await User.findOne({ email })
@@ -61,10 +19,10 @@ router.post("/register", async (req, res) => {
      } catch (err) {
           res.status(500).json({ error: "Server error" })
      }
-})
+}
 
-// Login logic
-router.post("/login", async (req, res) => {
+// Login User
+exports.loginUser = async (req, res) => {
      const { email, password } = req.body
      try {
           const user = await User.findOne({ email })
@@ -86,11 +44,9 @@ router.post("/login", async (req, res) => {
      } catch (err) {
           res.status(500).json({ error: "Server error" })
      }
-})
+}
 
-// Logout logic
-router.get("/logout", (req, res) => {
+// Logout User
+exports.logoutUser = (req, res) => {
      res.clearCookie("token").json({ message: "Logout successful" })
-})
-
-module.exports = router
+}
