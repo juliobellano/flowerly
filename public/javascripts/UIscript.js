@@ -30,3 +30,30 @@ menuOpenButton.addEventListener("click", () => {
 menuCloseButton.addEventListener("click", () => {
      document.body.classList.toggle("show-mobile-menu")
 })
+
+// document.querySelector("form").addEventListener("submit", async (e) => {
+//      e.preventDefault()
+
+//      const email = document.querySelector("#email").value
+//      const password = document.querySelector("#password").value
+
+//      try {
+//           const response = await fetch("/auth/register", {
+//                method: "POST",
+//                headers: {
+//                     "Content-Type": "application/json",
+//                },
+//                body: JSON.stringify({ email, password }),
+//           })
+
+//           if (response.ok) {
+//                window.location.href = "/auth/login" // Redirect to login
+//           } else {
+//                const error = await response.json()
+//                alert(error.message || "Registration failed. Try again.")
+//           }
+//      } catch (err) {
+//           console.error(err)
+//           alert("An error occurred. Please try again.")
+//      }
+// })

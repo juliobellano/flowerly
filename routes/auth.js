@@ -29,14 +29,14 @@ router.get(
 router.get(
      "/google/callback",
      passport.authenticate("google", {
-          failureRedirect: "/login",
+          failureRedirect: "/auth/login",
           successRedirect: "/create",
           failureFlash: true,
      })
 )
 
 // Logout route
-router.get("/logout", (req, res) => {
+router.get("/logout", (req, res, next) => {
      req.logout((err) => {
           if (err) return next(err)
           res.clearCookie("token")
@@ -46,7 +46,7 @@ router.get("/logout", (req, res) => {
 
 // Registration logic
 router.post("/register", async (req, res) => {
-     const { email, password } = req.body
+     const { name, email, password } = req.body
      try {
           const existingUser = await User.findOne({ email })
           if (existingUser) {
@@ -54,7 +54,7 @@ router.post("/register", async (req, res) => {
           }
 
           const hashedPassword = await bcrypt.hash(password, 10)
-          const newUser = new User({ email, password: hashedPassword })
+          const newUser = new User({ name, email, password: hashedPassword })
           await newUser.save()
 
           res.status(201).json({ message: "User registered successfully" })
@@ -86,11 +86,6 @@ router.post("/login", async (req, res) => {
      } catch (err) {
           res.status(500).json({ error: "Server error" })
      }
-})
-
-// Logout logic
-router.get("/logout", (req, res) => {
-     res.clearCookie("token").json({ message: "Logout successful" })
 })
 
 module.exports = router

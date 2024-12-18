@@ -48,7 +48,7 @@ mongoose
 
 // Routes
 const authRoutes = require("./routes/auth")
-app.use("/auth", authRoutes) // This means all routes in authRoutes will be prefixed with /auth
+app.use("/auth", authRoutes)
 
 const authMiddleware = require("./middleware/authMiddleware")
 
