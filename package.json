@@ -4,7 +4,9 @@
   "main": "main.js",
   "private": true,
   "scripts": {
-    "start": "concurrently \"node app.js\" \"electron .\""
+    "start": "concurrently \"node app.js\" \"electron .\"",
+    "dev": "vite",
+    "build": "vite build"
   },
   "dependencies": {
     "@capacitor/android": "^6.2.0",
@@ -20,17 +22,21 @@
     "http-errors": "~1.6.3",
     "jade": "^0.29.0",
     "jsonwebtoken": "^9.0.2",
+    "lil-gui": "^0.20.0",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.1",
     "morgan": "~1.9.1",
     "ngrok": "^5.0.0-beta.2",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
-    "pug": "^3.0.3"
+    "pug": "^3.0.3",
+    "three": "^0.166.1"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
     "electron": "^33.2.1",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "vite": "^5.4.11",
+    "vite-plugin-restart": "^0.4.1"
   }
 }
