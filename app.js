@@ -29,9 +29,15 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(express.static("public"))
 
+
 // Passport middleware - after session middleware
 app.use(passport.initialize())
 app.use(passport.session())
+
+// middleware
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')))
+app.use('/javascripts', express.static(path.join(__dirname, 'public/javascripts')))
+app.use('/textures', express.static(path.join(__dirname, 'public/textures')))
 
 // Template engine setup
 app.set("view engine", "pug")
