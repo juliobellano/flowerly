@@ -1,205 +1,320 @@
-<!DOCTYPE html><html><head><style>canvas {
-    position: fixed; /* Make the canvas fixed to cover the whole window */
-    top: 0;
-    left: 0;
-    width: 100vw; 
-    height: 100vh; 
-    z-index: -1; 
-    display: block; /* Remove any extra space below the canvas */
-}
+<!DOCTYPE html>
+<html>
 
-a {
-    z-index: 10;
-}
+<head>
+    <style>
+        canvas {
+            position: fixed;
+            /* Make the canvas fixed to cover the whole window */
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            display: block;
+            /* Remove any extra space below the canvas */
+        }
 
-nav {
-    z-index: 10;
-}
+        a {
+            z-index: 10;
+        }
 
-#starfield {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    overflow: hidden;
-}
-h1 {
-    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-    font-weight: bold;
-    margin: 0; /* Remove default margin */
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    position: absolute; /* Set position to absolute for easy movement */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust for centering */
-    color: white; /* Optional: Change text color to ensure visibility */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    transition: top 0.7s; 
-    z-index: 1; 
-}
+        nav {
+            z-index: 10;
+        }
 
-.sticky{
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 50px;
-}
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
 
-.container2 {
-    margin-top: 100vh;
-    width: 50vw;
-    transform: translateX(50%);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    /*background-color: aqua; */
-}
+        h1 {
+            font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+            font-weight: bold;
+            margin: 0;
+            /* Remove default margin */
+            display: flex;
+            /* Use flexbox for centering */
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            position: absolute;
+            /* Set position to absolute for easy movement */
+            top: 50%;
+            /* Center vertically */
+            left: 50%;
+            /* Center horizontally */
+            transform: translate(-50%, -50%);
+            /* Adjust for centering */
+            color: white;
+            /* Optional: Change text color to ensure visibility */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            transition: top 0.7s;
+            z-index: 1;
+        }
 
-.square3 {
-    width: 500px;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.5); /* for the Glowing effect */
-    color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    /* text settings*/
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-    color: white;
-    z-index: 3;
-}
+        .sticky {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 50px;
+        }
 
-.square3:hover{
-    background-color: #444;
-    transform: translateX(-50px);
-}
+        .container2 {
+            margin-top: 100vh;
+            width: 50vw;
+            transform: translateX(50%);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            /*background-color: aqua; */
+        }
 
-.bio-container {
-    font-family: "Lexend", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
-    text-align: center;
-    position: absolute;
-    right: -42%; /* Position it off-screen initially */
-    width: 40%; /* Set a fixed width */
-    height: 0; /* Start with no height */
-    /* background-color: #f9f9f9; */
-    color: white;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.7),
-        /* First shadow */ 2px 2px 0 rgba(0, 0, 0, 0.7),
-        /* Second shadow, slightly offset */ 3px 3px 2px rgba(0, 0, 0, 0.7); /* Third shadow with blur */
-    padding-top: 30px;
-    border: 1px solid #ddd;
-    opacity: 0;
-    overflow: hidden; 
-    transition: all 2s ease;
-}
+        .square3 {
+            width: 500px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.5);
+            /* for the Glowing effect */
+            color: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            /* text settings*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+            z-index: 3;
+        }
 
-.bio-container.visible {
-    height: 83.5%; /* Expand to full height */
-    padding-top: 30px;
-    opacity: 1;
-    right: -30%; /* Slide in */
-    transition: height 2s ease;
-}
+        .square3:hover {
+            background-color: #444;
+            transform: translateX(-50px);
+        }
 
-    /* When the screen width is less than or equal to 1200px */
-@media (max-width: 1200px) {
-    .bio-container {
-        width: 30%;
-    }
-}
+        .bio-container {
+            font-family: "Lexend", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+            text-align: center;
+            position: absolute;
+            right: -42%;
+            /* Position it off-screen initially */
+            width: 40%;
+            /* Set a fixed width */
+            height: 0;
+            /* Start with no height */
+            /* background-color: #f9f9f9; */
+            color: white;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.7),
+                /* First shadow */ 2px 2px 0 rgba(0, 0, 0, 0.7),
+                /* Second shadow, slightly offset */ 3px 3px 2px rgba(0, 0, 0, 0.7);
+            /* Third shadow with blur */
+            padding-top: 30px;
+            border: 1px solid #ddd;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 2s ease;
+        }
 
-    /* When the screen width is less than or equal to 900px */
-@media (max-width: 900px) {
-    .bio-container{
-        width: 25%;
-    }
-}
+        .bio-container.visible {
+            height: 83.5%;
+            /* Expand to full height */
+            padding-top: 30px;
+            opacity: 1;
+            right: -30%;
+            /* Slide in */
+            transition: height 2s ease;
+        }
 
-    /* When the screen width is less than or equal to 600px */
-@media (max-width: 600px) {
-    .bio-container {
-        width: 20%;
-    }
-}
+        /* When the screen width is less than or equal to 1200px */
+        @media (max-width: 1200px) {
+            .bio-container {
+                width: 30%;
+            }
+        }
 
-    /* When the screen width is less than or equal to 400px */
-@media (max-width: 400px) {
-    .bio-container {
-        width: 15%;
-    }
-}
-.hidden {
-    opacity: 0;
-    max-height: 0;
-    transform: scale(0.5);
-    overflow: hidden; /* Prevent content from spilling out during collapse */
-    transition: opacity 1.5s ease, max-height 1s ease, transform 2s ease; /* Smooth transition */
-    pointer-events: none; /* Disable interaction while hidden */
-}
+        /* When the screen width is less than or equal to 900px */
+        @media (max-width: 900px) {
+            .bio-container {
+                width: 25%;
+            }
+        }
 
-.visible {
-    opacity: 1;
-    max-height: 1000px; /* Adjust to fit the content height */
-    transform: scale(1); /* Return to normal size */
-    pointer-events: auto; /* Enable interaction */
-}
+        /* When the screen width is less than or equal to 600px */
+        @media (max-width: 600px) {
+            .bio-container {
+                width: 20%;
+            }
+        }
 
-.button{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: inline-block;
-    border-radius: 10px;
-    background-color: #393939;
-    border: none;
-    color: #FFFFFF;
-    text-align: center;
-    font-size: 28px;
-    padding: 20px;
-    width: 200px;
-    height: 200px;  
-    transition: all 1.5s;
-    cursor: pointer;
-    z-index: 4;
-}
+        /* When the screen width is less than or equal to 400px */
+        @media (max-width: 400px) {
+            .bio-container {
+                width: 15%;
+            }
+        }
 
-.button:hover {
-    background-color: #000000;
-    width: 250px;
-}
+        .hidden {
+            opacity: 0;
+            max-height: 0;
+            transform: scale(0.5);
+            overflow: hidden;
+            /* Prevent content from spilling out during collapse */
+            transition: opacity 1.5s ease, max-height 1s ease, transform 2s ease;
+            /* Smooth transition */
+            pointer-events: none;
+            /* Disable interaction while hidden */
+        }
 
-.avatar {
-    margin: auto;
-    width: 40%;
-    height: 15%;
-    box-sizing: border-box;
-    border: 5px white solid;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
-    transform: translatey(0px);
-    animation: float 6s ease-in-out infinite;
-    img {
-        width: 100%;
-        height: auto;
-    }
-}
-</style><title></title><!--link(rel='stylesheet', href='/stylesheets/style.css')--><script src="/javascripts/script.js" defer></script><script src="https://unpkg.com/htmx.org@1.9.6"></script><script src="https://unpkg.com/hyperscript.org@0.9.11"></script></head><body><header><nav><ul> <li><a href="./about.html">about us</a></li><li><a href="./index.html">home</a></li></ul></nav></header><div id="starfield"></div><button class="button" _="on click  transition my *height to 100vh then transition my *width to 100vw then wait 0.1s then show .container then transition .container's opacity to 1 then wait 0.1s then transition opacity to 0 over 700ms then set my style.zIndex to 2">Click This to Know About Us</button><div class="container" style="display: none; opacity: 0;"><h1 id="jjb-team">JJB Team</h1><div class="container2"><div class="square3" _="on mouseenter add .visible to #hidden-square1 on mouseleave remove .visible from #hidden-square1"><p>Benedict 黃志斌 411855157</p></div><div class="bio-container" id="hidden-square1"><div class="avatar"><img src="benedict.jpg" alt="Benedict profile"></div><h2>Name : Benedict 黃志斌</h2><h3>Age : 20</h3><h3>Hobby : Billiard</h3><h3>About me : I like javascript and billiard.</h3></div><div class="square3" _="on mouseenter add .visible to #hidden-square2 on mouseleave remove .visible from #hidden-square2"><p>Helga 李韋前 411855033</p></div><div class="bio-container" id="hidden-square2"><div class="avatar"><img src="helga.jpeg" alt="Helga profile"></div><h2>Name : Helga 李韋前</h2><h3>Age : 20</h3><h3>Hobby : Basketball </h3><h3>About me : I enjoy physical activities like going to the gym and play basketball</h3></div><div class="square3" _="on mouseenter add .visible to #hidden-square3 on mouseleave remove .visible from #hidden-square3"><p>Julio 鍾國榮 411855116</p></div><div class="bio-container" id="hidden-square3"><div class="avatar"><img src="julio.jpg" alt="Julio profile"></div><h2>Name : Julio 鍾國榮</h2><h3>Age : 20</h3><h3>Hobby : Cooking</h3><h3>About me : I like to stay active and challange myself.</h3></div><div class="square3" style="margin-bottom: 20vh;" _="on mouseenter add .visible to #hidden-square4 on mouseleave remove .visible from #hidden-square4"><p>Timotius 張慧榮 411856114</p></div><div class="bio-container" id="hidden-square4"><div class="avatar"><img src="timo.jpg" alt="timo profile"></div><h2>Name : Timotius 張慧榮</h2><h3>Age : 20</h3><h3>Hobby : trading</h3><h3>About me : when I commited myself to something, I will get it.</h3></div></div></div></body></html>
+        .visible {
+            opacity: 1;
+            max-height: 1000px;
+            /* Adjust to fit the content height */
+            transform: scale(1);
+            /* Return to normal size */
+            pointer-events: auto;
+            /* Enable interaction */
+        }
+
+        .button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: inline-block;
+            border-radius: 10px;
+            background-color: #393939;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 200px;
+            height: 200px;
+            transition: all 1.5s;
+            cursor: pointer;
+            z-index: 4;
+        }
+
+        .button:hover {
+            background-color: #000000;
+            width: 250px;
+        }
+
+        .avatar {
+            margin: auto;
+            width: 40%;
+            height: 15%;
+            box-sizing: border-box;
+            border: 5px white solid;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+            transform: translatey(0px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+
+    <title>About Us</title>
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css'> -->
+    <script src="../public/javascripts/script.js" defer></script>
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.11"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./about.html">about us</a></li>
+                <li><a href="../index.html">home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="starfield"></div>
+
+    <button class="button" _="on click transition my *height to 100vh then transition my *width to 100vw then wait 0.1s then show .container then transition .container's opacity to 1 then wait 0.1s then transition opacity to 0 over 700ms then set my style.zIndex to 2">
+        Click This to Know About Us
+    </button>
+
+    <div class="container" style="display: none; opacity: 0;">
+        <h1 id="jjb-team">JJB Team</h1>
+        <div class="container2">
+            <div class="square3" _="on mouseenter add .visible to #hidden-square1 on mouseleave remove .visible from #hidden-square1">
+                <p>Benedict 黃志斌 411855157</p>
+            </div>
+            <div class="bio-container" id="hidden-square1">
+                <div class="avatar">
+                    <img src="benedict.jpg" alt="Benedict profile">
+                </div>
+                <h2>Name : Benedict 黃志斌</h2>
+                <h3>Age : 20</h3>
+                <h3>Hobby : Billiard</h3>
+                <h3>About me : I like javascript and billiard.</h3>
+            </div>
+
+            <div class="square3" _="on mouseenter add .visible to #hidden-square2 on mouseleave remove .visible from #hidden-square2">
+                <p>Helga 李韋前 411855033</p>
+            </div>
+            <div class="bio-container" id="hidden-square2">
+                <div class="avatar">
+                    <img src="helga.jpeg" alt="Helga profile">
+                </div>
+                <h2>Name : Helga 李韋前</h2>
+                <h3>Age : 20</h3>
+                <h3>Hobby : Basketball </h3>
+                <h3>About me : I enjoy physical activities like going to the gym and playing basketball</h3>
+            </div>
+
+            <div class="square3" _="on mouseenter add .visible to #hidden-square3 on mouseleave remove .visible from #hidden-square3">
+                <p>Julio 鍾國榮 411855116</p>
+            </div>
+            <div class="bio-container" id="hidden-square3">
+                <div class="avatar">
+                    <img src="julio.jpg" alt="Julio profile">
+                </div>
+                <h2>Name : Julio 鍾國榮</h2>
+                <h3>Age : 20</h3>
+                <h3>Hobby : Cooking</h3>
+                <h3>About me : I like to stay active and challenge myself.</h3>
+            </div>
+
+            <div class="square3" style="margin-bottom: 20vh;" _="on mouseenter add .visible to #hidden-square4 on mouseleave remove .visible from #hidden-square4">
+                <p>Timotius 張慧榮 411856114</p>
+            </div>
+            <div class="bio-container" id="hidden-square4">
+                <div class="avatar">
+                    <img src="timo.jpg" alt="Timo profile">
+                </div>
+                <h2>Name : Timotius 張慧榮</h2>
+                <h3>Age : 20</h3>
+                <h3>Hobby : Trading</h3>
+                <h3>About me : When I commit myself to something, I will get it.</h3>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
