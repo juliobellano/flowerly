@@ -44,7 +44,7 @@ mongoose
           useUnifiedTopology: true,
      })
      .then(() => console.log("MongoDB Connected"))
-     .catch((err) => console.error(err))
+     .catch((err) => console.log("connection failed"))
 
 // Routes
 const authRoutes = require("./routes/auth")
@@ -68,3 +68,59 @@ app.get("/create", authMiddleware, (req, res) => {
 app.listen(port, () => {
      console.log(`App is running on http://localhost:${port}`)
 })
+
+//julio database
+//get specific data
+
+const Product = require('./models/flower.models.js')
+
+app.get('/api/products/:id', async (req, res) => {
+     try {
+          const { id } = req.params;
+          const product = await Product.findById(id);
+          res.status(200).json(product);
+
+     }catch (error) { 
+          res.status(500).json({message : error});
+     }
+})
+
+//get data from mongo
+app.get('/api/products', async (req, res) => {
+     try {
+          const product = await Product.find({});
+          res.status(200).json(product);
+     } catch (error) {
+          res.status(500).json({message: error.message});
+     }
+});
+
+//post data to mongo
+app.post('/api/products', async (req, res) => {
+     try {
+          const product = await Product.create(req.body);
+          res.status(200).json(product);
+     } catch (error) {
+          res.status(500).json({message: error.message});
+     }
+});
+
+//try to update data
+
+app.put('/api/products/:id', async (req, res ) => {
+     try {
+          const {id} = req.params;
+          const product = await Product.findByIdAndUpdate(id, req.body); 
+   
+          if (!product) {
+               return res.status(400).json({message : "Product is not found"});
+          }
+   
+          const updatedProduct = await Product.findById(id);
+          res.status(200).json(updatedProduct);
+   
+     } catch (error){
+          res.status(200).json({message : error.message});
+     }
+     
+});
