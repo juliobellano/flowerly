@@ -27,13 +27,17 @@ router.get(
 
 // Google callback
 router.get(
-     "/google/callback",
-     passport.authenticate("google", {
-          failureRedirect: "/auth/login",
-          successRedirect: "/create",
+     '/google/callback',
+     passport.authenticate('google', {
+          failureRedirect: '/auth/failure',
+          successRedirect: '/create',
           failureFlash: true,
      })
 )
+
+router.get ('/auth/failure', (req, res) => {
+     res.send('authentication went wrong..');
+});
 
 // Logout route
 router.get("/logout", (req, res, next) => {
@@ -65,27 +69,34 @@ router.post("/register", async (req, res) => {
 
 // Login logic
 router.post("/login", async (req, res) => {
-     const { email, password } = req.body
+     const { email, password } = req.body;
      try {
-          const user = await User.findOne({ email })
-          if (!user) {
-               return res.status(400).json({ message: "Invalid credentials" })
-          }
-
-          const isMatch = await bcrypt.compare(password, user.password)
-          if (!isMatch) {
-               return res.status(400).json({ message: "Invalid credentials" })
-          }
-
-          const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-               expiresIn: "1h",
-          })
-          res.cookie("token", token, { httpOnly: true }).json({
-               message: "Login successful",
-          })
+         // Find user by email
+         const user = await User.findOne({ email });
+         if (!user) {
+             return res.status(400).json({ message: "Invalid credentials" });
+         }
+ 
+         // Check password
+         const isMatch = await bcrypt.compare(password, user.password);
+         if (!isMatch) {
+             return res.status(400).json({ message: "Invalid credentials" });
+         }
+ 
+         // Store user data in session
+         req.session.user = {
+             id: user._id,
+             name: user.name,
+             email: user.email,
+         };
+ 
+         // Redirect to /create
+         res.redirect("/create");
      } catch (err) {
-          res.status(500).json({ error: "Server error" })
+         console.error(err);
+         res.status(500).json({ error: "Server error" });
      }
-})
+ });
+ 
 
 module.exports = router
