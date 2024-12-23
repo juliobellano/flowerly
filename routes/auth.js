@@ -6,6 +6,8 @@ const User = require("../models/User")
 const router = express.Router()
 const passport = require("passport")
 
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+
 // Serve login.html
 router.get("/login", (req, res) => {
      res.sendFile(path.join(__dirname, "../views/login.html"))
@@ -29,8 +31,8 @@ router.get(
 router.get(
      '/google/callback',
      passport.authenticate('google', {
-          failureRedirect: '/auth/failure',
-          successRedirect: '/create',
+          failureRedirect: `${BASE_URL}/auth/failure`,
+          successRedirect: `${BASE_URL}/create`,
           failureFlash: true,
      })
 )
@@ -44,7 +46,7 @@ router.get("/logout", (req, res, next) => {
      req.logout((err) => {
           if (err) return next(err)
           res.clearCookie("token")
-          res.redirect("/")
+          res.redirect(`${BASE_URL}/`)
      })
 })
 
@@ -91,7 +93,7 @@ router.post("/login", async (req, res) => {
          };
  
          // Redirect to /create
-         res.redirect("/create");
+         res.redirect(`${BASE_URL}/create`);
      } catch (err) {
          console.error(err);
          res.status(500).json({ error: "Server error" });

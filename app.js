@@ -9,6 +9,7 @@ const session = require("express-session")
 const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 require("./passport/passport-config")
 
 app.use(
