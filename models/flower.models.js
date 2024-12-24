@@ -1,45 +1,33 @@
 const mongoose = require('mongoose');
 
-const ProductSchema = mongoose.Schema(
-    {
-        flowername: {
-            type: String,
-            required: [true, "please enter flower name"]
-        },
-        
-        username: {
-            type: String,
-            required: [true, "please enter flower name"]
-        },
-
-        quantity: {
-            type: Number,
-            required: true,
-            default: 0
-        },
-
-        coordinatex: {
-            type: Number,
-            required: true,
-            default: 0
-        },
-
-        coordinatey: {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        
-        image: {
-            type: String,
-            required: false
-        },
+const flowerPositionSchema = new mongoose.Schema({
+  giftcardId: { type: String, required: true },
+  flowers: [{
+    uuid: String,
+    position: {
+      x: Number,
+      y: Number,
+      z: Number
     },
-    {
-        timestamps: true,
+    rotation: {
+      x: Number,
+      y: Number,
+      z: Number
+    },
+    scale: {
+      x: Number,
+      y: Number,
+      z: Number
+    },
+    geometry: {
+      type: String  // Store the geometry type (sphere, box, etc.)
+    },
+    material: {
+      color: String,
+      type: String
     }
-);
+  }]
+});
 
-const Product = mongoose.model('Product', ProductSchema);
-
-module.exports = Product;
+const FlowerPosition = mongoose.model('FlowerPosition', flowerPositionSchema);
+module.exports = FlowerPosition;
