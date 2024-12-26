@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const flowerPositionSchema = new mongoose.Schema({
-  giftcardId: { type: String, required: true },
+const flowerSchema = new mongoose.Schema({
+  giftcardId: String,
   flowers: [{
     uuid: String,
     position: {
@@ -19,15 +19,10 @@ const flowerPositionSchema = new mongoose.Schema({
       y: Number,
       z: Number
     },
-    geometry: {
-      type: String  // Store the geometry type (sphere, box, etc.)
-    },
-    material: {
-      color: String,
-      type: String
-    }
+    geometryType: String,
+    materialColor: String,
+    materialType: String
   }]
 });
 
-const FlowerPosition = mongoose.model('FlowerPosition', flowerPositionSchema);
-module.exports = FlowerPosition;
+module.exports = mongoose.model('FlowerPosition', flowerSchema);

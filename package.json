@@ -30,7 +30,8 @@
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "pug": "^3.0.3",
-    "three": "^0.166.1"
+    "three": "^0.166.1",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",

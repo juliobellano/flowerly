@@ -57,6 +57,9 @@ mongoose
 const authRoutes = require("./routes/auth")
 app.use("/auth", authRoutes)
 
+const saveRouter = require('./routes/save');
+app.use('/api/', saveRouter);
+
 const authMiddleware = require("./middleware/authMiddleware")
 
 // Route handlers

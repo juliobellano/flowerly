@@ -321,6 +321,66 @@ function main() {
     });
 }
 
+async function saveFlowerPositions() {
+    const flowers = Editorscene.children
+        .filter(child => child.type === "Mesh" && child !== ground)
+        .map(flower => ({
+            uuid: flower.uuid,
+            position: {
+                x: flower.position.x,
+                y: flower.position.y,
+                z: flower.position.z
+            },
+            rotation: {
+                x: flower.rotation.x,
+                y: flower.rotation.y,
+                z: flower.rotation.z
+            },
+            scale: {
+                x: flower.scale.x,
+                y: flower.scale.y,
+                z: flower.scale.z
+            },
+            geometry: {
+                type: flower.geometry.type
+            },
+            material: {
+                color: flower.material.color.getHexString(),
+                type: flower.material.type
+            }
+        }));
+
+    console.log('Sending flowers data:', flowers);
+
+    try {
+        const response = await fetch('/api/flowers/save-positions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                giftcardId: "test-giftcard-1",
+                flowers: flowers
+            })
+        });
+        
+        const result = await response.json();
+        console.log('Save response:', result);
+        
+        if (result.success) {
+            alert('Flowers saved successfully!');
+        } else {
+            alert('Error saving flowers: ' + result.error);
+        }
+    } catch (error) {
+        console.error('Save error:', error);
+        alert('Error saving flowers');
+    }
+
+
+}
+
+document.getElementById('saveButton').addEventListener('click', saveFlowerPositions);
 
 main();
 

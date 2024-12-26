@@ -6,36 +6,7 @@ const express = require('express');
 const router = express.Router();
 const FlowerPosition = require('../models/flower.models');
 
-// Save flower positions
-router.post('/save-positions', async (req, res) => {
-  try {
-    const { giftcardId, flowers } = req.body;
-    
-    // Update if exists, create if doesn't
-    const result = await FlowerPosition.findOneAndUpdate(
-      { giftcardId },
-      { giftcardId, flowers },
-      { upsert: true, new: true }
-    );
-    
-    res.json({ success: true, data: result });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
 
-// Get flower positions
-router.get('/get-positions/:giftcardId', async (req, res) => {
-  try {
-    const { giftcardId } = req.params;
-    const positions = await FlowerPosition.findOne({ giftcardId });
-    res.json({ success: true, data: positions });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-module.exports = router;
 
 // Modified Three.js scene code to save positions
 function saveFlowerPositions() {
@@ -140,7 +111,7 @@ async function loadFlowerPositions(giftcardId) {
 }
 
 // Add save button event listener
-document.getElementById('saveButton').addEventListener('click', saveFlowerPositions);
+
 
 // Load positions when the scene initializes
 loadFlowerPositions('unique-giftcard-id'); // Replace with actual giftcard ID
