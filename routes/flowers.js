@@ -32,19 +32,6 @@ router.post('/save-positions', async (req, res) => {
 });
 
 router.get('/get-positions/:giftcardId', async (req, res) => {
-  try {
-      const positions = await FlowerPosition.findOne({ 
-          giftcardId: req.params.giftcardId 
-      });
-      res.json({ success: true, data: positions });
-  } catch (error) {
-      res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-module.exports = router;
-// Get flower positions
-router.get('/get-positions/:giftcardId', async (req, res) => {
     try {
         const { giftcardId } = req.params;
         const positions = await FlowerPosition.findOne({ giftcardId });
@@ -62,4 +49,7 @@ router.get('/get-positions/:giftcardId', async (req, res) => {
     }
 });
 
+
 module.exports = router;
+// Get flower positions
+

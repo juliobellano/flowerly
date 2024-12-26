@@ -353,7 +353,7 @@ async function saveFlowerPositions() {
     console.log('Sending flowers data:', flowers);
 
     try {
-        const response = await fetch('/api/flowers/save-positions', {
+        const response = await fetch('/api/save-positions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -380,7 +380,67 @@ async function saveFlowerPositions() {
 
 }
 
+async function loadFlowerPositions(giftcardId) {
+    try {
+      const response = await fetch(`/api/get-positions/${giftcardId}`);
+      const data = await response.json();
+      
+      if (data.success && data.data) {
+        // Clear existing flowers (except ground)
+        Editorscene.children
+          .filter(child => child.type === "Mesh" && child !== ground)
+          .forEach(flower => {
+            Editorscene.remove(flower);
+          });
+        
+        // Recreate flowers from saved positions
+        data.data.flowers.forEach(flowerData => {
+          let geometry;
+          switch(flowerData.geometry.type) {
+            case 'SphereGeometry':
+              geometry = new THREE.SphereGeometry(1.5, 12, 8);
+              break;
+            case 'BoxGeometry':
+              geometry = new THREE.BoxGeometry(5, 5, 5);
+              break;
+            // Add other geometry types as needed
+          }
+          
+          const material = new THREE.MeshStandardMaterial({
+            color: parseInt(flowerData.material.color, 16)
+          });
+          
+          const mesh = new THREE.Mesh(geometry, material);
+          mesh.position.set(
+            flowerData.position.x,
+            flowerData.position.y,
+            flowerData.position.z
+          );
+          mesh.rotation.set(
+            flowerData.rotation.x,
+            flowerData.rotation.y,
+            flowerData.rotation.z
+          );
+          mesh.scale.set(
+            flowerData.scale.x,
+            flowerData.scale.y,
+            flowerData.scale.z
+          );
+          
+          mesh.castShadow = true;
+          mesh.receiveShadow = true;
+          
+          Editorscene.add(mesh);
+        });
+      }
+    } catch (error) {
+      console.error('Error loading flower positions:', error);
+    }
+  }
+
 document.getElementById('saveButton').addEventListener('click', saveFlowerPositions);
+
+document.getElementById('loadButton').addEventListener('click', loadFlowerPositions('test-giftcard-1'));
 
 main();
 

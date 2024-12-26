@@ -6,8 +6,10 @@ const User = require("../models/User")
 const router = express.Router()
 const passport = require("passport")
 
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
-
+const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? process.env.PROD_BASE_URL 
+  : process.env.BASE_URL;
+  
 // Serve login.html
 router.get("/login", (req, res) => {
      res.sendFile(path.join(__dirname, "../views/login.html"))

@@ -2,7 +2,9 @@ const passport = require("passport")
 const GoogleStrategy = require("passport-google-oauth20").Strategy
 const User = require("../models/User")
 
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? process.env.PROD_BASE_URL 
+  : process.env.BASE_URL;
 
 passport.use(
      new GoogleStrategy(

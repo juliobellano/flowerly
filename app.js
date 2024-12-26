@@ -9,7 +9,10 @@ const session = require("express-session")
 const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? process.env.PROD_BASE_URL 
+  : process.env.BASE_URL;
+
 require("./passport/passport-config")
 
 app.use(
@@ -57,7 +60,7 @@ mongoose
 const authRoutes = require("./routes/auth")
 app.use("/auth", authRoutes)
 
-const saveRouter = require('./routes/save');
+const saveRouter = require('./routes/flowers.js');
 app.use('/api/', saveRouter);
 
 const authMiddleware = require("./middleware/authMiddleware")
