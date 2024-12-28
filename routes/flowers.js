@@ -6,31 +6,30 @@ const { v4: uuidv4 } = require('uuid');
 // Save flower positions
 router.post('/save-positions', async (req, res) => {
   try {
-      const { giftcardId, flowers } = req.body;
-      
-      const mappedFlowers = flowers.map(flower => ({
-          uuid: flower.uuid,
-          position: flower.position,
-          rotation: flower.rotation,
-          scale: flower.scale,
-          geometryType: flower.geometry.type,
-          materialColor: flower.material.color,
-          materialType: flower.material.type
-      }));
+    const { giftcardId, flowers } = req.body;
+    
+    // Simplified mapping to match frontend data structure
+    const mappedFlowers = flowers.map(flower => ({
+      textureIndex: flower.textureIndex,
+      position: {
+        x: flower.position.x,
+        y: flower.position.y,
+        z: flower.position.z
+      }
+    }));
 
-      const result = await FlowerPosition.findOneAndUpdate(
-          { giftcardId },
-          { giftcardId, flowers: mappedFlowers },
-          { upsert: true, new: true }
-      );
+    const result = await FlowerPosition.findOneAndUpdate(
+      { giftcardId },
+      { giftcardId, flowers: mappedFlowers },
+      { upsert: true, new: true }
+    );
 
-      res.json({ success: true, data: result });
+    res.json({ success: true, data: result });
   } catch (error) {
-      console.error('Save error:', error);
-      res.status(500).json({ success: false, error: error.message });
+    console.error('Save error:', error);
+    res.status(500).json({ success: false, error: error.message });
   }
 });
-
 router.get('/get-positions/:giftcardId', async (req, res) => {
     try {
         const { giftcardId } = req.params;
