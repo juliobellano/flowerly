@@ -1,5 +1,8 @@
 {
   "appId": "com.flowerly.flowerly",
   "appName": "Flowerly",
-  "webDir": "dist"
+  "webDir": "dist",
+  "server": {
+    "url": "https://new-refined-hornet.ngrok-free.app"
+  }
 }
