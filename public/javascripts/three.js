@@ -35,6 +35,73 @@ const geometries = [
 ];
 
 function main() {
+
+    async function loadFromUrl(specificId = null) {
+        // Get ID either from URL parameters or passed argument
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = specificId || urlParams.get('id') || 'test-giftcard-1';
+        
+        try {
+            const response = await fetch(`/api/get-positions/${id}`);
+            const data = await response.json();
+            
+            if (!data.success || !data.data?.flowers) {
+                console.error('Invalid flower data:', data);
+                return;
+            }
+    
+            // Clear existing flowers
+            const meshesToRemove = Editorscene.children.filter(
+                child => child.type === "Mesh" && 
+                child !== ground && 
+                child !== bouquetLower && 
+                child !== bouquetUpper && 
+                child !== ribbon
+            );
+            meshesToRemove.forEach(mesh => {
+                mesh.geometry.dispose();
+                mesh.material.dispose();
+                Editorscene.remove(mesh);
+            });
+            
+            // Load flowers
+            data.data.flowers.forEach((flowerData) => {
+                try {
+                    const textureIndex = flowerData.textureIndex;
+                    
+                    if (textureIndex === undefined || textureIndex < 0 || textureIndex >= geometries.length) {
+                        console.error(`Invalid textureIndex:`, textureIndex);
+                        return;
+                    }
+    
+                    const texturePath = geometries[textureIndex];
+                    
+                    const texture = new THREE.TextureLoader().load(texturePath);
+                    const geometry = new THREE.PlaneGeometry(7, 11, 1, 1);
+                    const material = new THREE.MeshBasicMaterial({
+                        map: texture,
+                        transparent: true,
+                        alphaTest: 0.1,
+                        side: THREE.DoubleSide
+                    });
+                    
+                    const mesh = new THREE.Mesh(geometry, material);
+                    mesh.position.set(
+                        Number(flowerData.position.x),
+                        Number(flowerData.position.y),
+                        Number(flowerData.position.z)
+                    );
+                    
+                    Editorscene.add(mesh);
+                } catch (error) {
+                    console.error('Error creating flower:', error);
+                }
+            });
+        } catch (error) {
+            console.error('Error loading flower positions:', error);
+        }
+    }
+
     const canvas = document.getElementById('OptionCanvas');
     const editorCanvas = document.getElementById('editor');
     const renderer = new THREE.WebGLRenderer({ antialias: true, canvas: canvas });
@@ -144,6 +211,8 @@ function main() {
 
     function setUpEditorScene() {
         makeEditorScene();
+        loadFromUrl();
+
      
         const textureLoader = new THREE.TextureLoader();
         const Bouquettexture1 = new THREE.TextureLoader().load('textures/lowerLayer.PNG');
@@ -375,21 +444,13 @@ async function saveFlowerPositions() {
             child !== bouquetUpper && 
             child !== ribbon)
         .map(flower => {
-            // Find texture index by matching the image source
             const textureUrl = flower.material.map.image.src;
             const textureIndex = geometries.findIndex(path => 
                 textureUrl.includes(path.split('/').pop())
             );
             
-            console.log('Saving flower:', {
-                textureUrl,
-                textureIndex,
-                position: flower.position
-            });
-            
-            // Make sure we include textureIndex in the saved data
             return {
-                textureIndex: textureIndex, // Explicitly include textureIndex
+                textureIndex: textureIndex,
                 position: {
                     x: flower.position.x,
                     y: flower.position.y,
@@ -398,23 +459,22 @@ async function saveFlowerPositions() {
             };
         });
 
-    console.log('Flowers to save:', flowers);
-
     try {
+        const giftcardId = generateId();
         const response = await fetch('/api/save-positions', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                giftcardId: "test-giftcard-1",
-                flowers: flowers
+                giftcardId,
+                flowers
             })
         });
         
         const result = await response.json();
-        console.log('Save response:', result);
         
         if (result.success) {
-            alert('Flowers saved successfully!');
+            const shareableLink = `${window.location.origin}/create?id=${giftcardId}`;
+            alert(`Design saved! Share this link with your friends:\n${shareableLink}`);
         } else {
             alert('Error saving flowers: ' + result.error);
         }
@@ -424,73 +484,16 @@ async function saveFlowerPositions() {
     }
 }
 
-async function loadFlowerPositions() {
-    try {
-        const response = await fetch('/api/get-positions/test-giftcard-1');
-        const data = await response.json();
-        console.log('Loaded data:', data);
-        
-        if (!data.success || !data.data?.flowers) {
-            console.error('Invalid flower data:', data);
-            return;
-        }
 
-        // Clear existing flowers
-        const meshesToRemove = Editorscene.children.filter(
-            child => child.type === "Mesh" && 
-            child !== ground && 
-            child !== bouquetLower && 
-            child !== bouquetUpper && 
-            child !== ribbon
-        );
-        meshesToRemove.forEach(mesh => {
-            mesh.geometry.dispose();
-            mesh.material.dispose();
-            Editorscene.remove(mesh);
-        });
-        
-        // Load flowers
-        data.data.flowers.forEach((flowerData, index) => {
-            try {
-                const textureIndex = flowerData.textureIndex;
-                console.log(`Loading flower ${index} with textureIndex:`, textureIndex);
-                
-                if (textureIndex === undefined || textureIndex < 0 || textureIndex >= geometries.length) {
-                    console.error(`Invalid textureIndex for flower ${index}:`, textureIndex);
-                    return;
-                }
 
-                const texturePath = geometries[textureIndex];
-                console.log(`Loading texture from path: ${texturePath}`);
-                
-                const texture = new THREE.TextureLoader().load(texturePath);
-                const geometry = new THREE.PlaneGeometry(7, 11, 1, 1);
-                const material = new THREE.MeshBasicMaterial({
-                    map: texture,
-                    transparent: true,
-                    alphaTest: 0.1,
-                    side: THREE.DoubleSide
-                });
-                
-                const mesh = new THREE.Mesh(geometry, material);
-                mesh.position.set(
-                    Number(flowerData.position.x),
-                    Number(flowerData.position.y),
-                    Number(flowerData.position.z)
-                );
-                
-                Editorscene.add(mesh);
-                console.log(`Successfully added flower ${index}`);
-            } catch (error) {
-                console.error(`Error creating flower ${index}:`, error);
-            }
-        });
-    } catch (error) {
-        console.error('Error loading flower positions:', error);
-    }
+//generate unique id
+function generateId() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
 // Update event listeners
 document.getElementById('saveButton').addEventListener('click', saveFlowerPositions);
-document.getElementById('loadButton').addEventListener('click', loadFlowerPositions);
+//document.getElementById('loadButton').addEventListener('click', loadFlowerPositions);
+document.getElementById('loadButton').addEventListener('click', () => loadFromUrl('test-giftcard-1'));
+
 

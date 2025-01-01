@@ -2,9 +2,7 @@ const passport = require("passport")
 const GoogleStrategy = require("passport-google-oauth20").Strategy
 const User = require("../models/User")
 
-const BASE_URL = process.env.NODE_ENV === 'production' 
-  ? process.env.PROD_BASE_URL 
-  : process.env.BASE_URL;
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 
 passport.use(
      new GoogleStrategy(
@@ -14,6 +12,8 @@ passport.use(
                callbackURL: `${BASE_URL}/auth/google/callback`,
           },
           async (accessToken, refreshToken, profile, done) => {
+               console.log("Google Auth Response:", profile);
+
                try {
                     let user = await User.findOne({ googleId: profile.id })
 
@@ -42,15 +42,17 @@ passport.use(
      )
 )
 
-// Serialize user
-passport.serializeUser((user, done) => done(null, user.id))
-
-// Deserialize user
-passport.deserializeUser(async (id, done) => {
+passport.serializeUser((user, done) => {
+     console.log('Serializing user:', user.id);
+     done(null, user.id);
+ });
+ 
+ passport.deserializeUser(async (id, done) => {
      try {
-          const user = await User.findById(id)
-          done(null, user)
+         const user = await User.findById(id);
+         console.log('Deserialized user:', user);
+         done(null, user);
      } catch (err) {
-          done(err, null)
+         done(err, null);
      }
-})
+ });

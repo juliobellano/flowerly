@@ -9,17 +9,14 @@ const session = require("express-session")
 const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 
-const BASE_URL = process.env.NODE_ENV === 'production' 
-  ? process.env.PROD_BASE_URL 
-  : process.env.BASE_URL;
-
 require("./passport/passport-config")
+
 
 app.use(
      session({
           secret: process.env.JWT_SECRET,
-          resave: false,
-          saveUninitialized: false,
+          resave: true,
+          saveUninitialized: true,
           cookie: {
                secure: process.env.NODE_ENV === "production", // Use secure cookies in production
                maxAge: 24 * 60 * 60 * 1000,
@@ -58,7 +55,7 @@ mongoose
 
 // Routes
 const authRoutes = require("./routes/auth")
-app.use("/auth", authRoutes)
+app.use('/auth', authRoutes)
 
 const saveRouter = require('./routes/flowers.js');
 app.use('/api/', saveRouter);
