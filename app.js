@@ -72,7 +72,7 @@ app.get("/about", (req, res) => {
      res.render("about")
 })
 
-app.get("/create", authMiddleware, (req, res) => {
+app.get("/create", (req, res) => {
      res.sendFile(path.join(__dirname, "views", "index.html"))
 })
 
