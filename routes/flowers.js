@@ -30,6 +30,7 @@ router.post('/save-positions', async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
 router.get('/get-positions/:giftcardId', async (req, res) => {
     try {
         const { giftcardId } = req.params;
