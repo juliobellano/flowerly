@@ -12,7 +12,7 @@ const createWindow = () => {
   });
 
   // Load the URL (e.g., Express server URL)
-  win.loadURL('http://localhost:3000');
+  win.loadURL('https://new-refined-hornet.ngrok-free.app');
 };
 
 // App lifecycle

@@ -552,8 +552,8 @@
           <div id="modal" class="modal">
                <div class="modal-content">
                    <span class="close">&times;</span>
-                   <h2>Enter Link</h2>
-                   <input type="text" id="linkInput" placeholder="Enter Link">
+                   <h2>Enter ID</h2>
+                   <input type="text" id="linkInput" placeholder="Enter ID number">
                    <button id="submitButton">Submit</button>
                </div>
            </div>
@@ -565,6 +565,8 @@
                const linkInput = document.getElementById('linkInput');
                const submitButton = document.getElementById('submitButton');
            
+               const baseURL = 'https://new-refined-hornet.ngrok-free.app/create'
+
                loadLinkButton.addEventListener('click', () => {
                    modal.style.display = "block";
                });
@@ -580,9 +582,10 @@
                });
            
                submitButton.addEventListener('click', () => {
-                   const link = linkInput.value;
-                   if (link) {
-                       window.location.href = link;
+                   const id = linkInput.value.trim();
+                   if (id) {
+                         const fullURL = "create?id=" + id;
+                         window.location.href = fullURL;
                    } else {
                        alert('Please enter a valid link.');
                    }
