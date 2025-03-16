@@ -36,13 +36,14 @@ Flowerly is a custom flower design application that lets users create and person
    
 2. **Install Dependencies:**
 
-  npm install
+     ```bash
+     npm install
 
 3. **Configure Environment Variables:**
 
   Create a .env file in the root directory with the following keys (replace the placeholders with your actual configuration):
   
-     ```env
+     ```bash
      MONGODB_URI=your_mongodb_connection_string
      AUTH0_CLIENT_ID=your_auth0_client_id
      AUTH0_CLIENT_SECRET=your_auth0_client_secret
@@ -51,7 +52,7 @@ Flowerly is a custom flower design application that lets users create and person
 
 4. **Start the Application:**
    
-   ```start
+   ```bash
    npm start
 
 ##The app will run on http://localhost:3000 by default.
