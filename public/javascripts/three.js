@@ -95,11 +95,11 @@ function main() {
     const canvas = document.getElementById('OptionCanvas');
     const editorCanvas = document.getElementById('editor');
     const renderer = new THREE.WebGLRenderer({ antialias: true, canvas: canvas });
-    editorRenderer = new THREE.WebGLRenderer({ antialias: true, canvas: editorCanvas });
+    editorRenderer = new THREE.WebGLRenderer({ antialias: true, canvas: editorCanvas, alpha:true });
     renderer.setClearColor(0xffffff, 1);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    editorRenderer.setClearColor(0xffffff, 1);
+    editorRenderer.setClearColor(0xF2D4C2, 1);
     editorRenderer.setSize(editorCanvas.clientWidth * window.devicePixelRatio, editorCanvas.clientHeight * window.devicePixelRatio, false);
     editorRenderer.shadowMap.enabled = true;
     
@@ -127,7 +127,6 @@ function main() {
 
     function makeEditorScene() {
         Editorscene = new THREE.Scene();
-        Editorscene.background = new THREE.Color(0x333333);
     
         Editorcamera = new THREE.PerspectiveCamera(60, editorCanvas.clientWidth / editorCanvas.clientHeight, 0.1, 1000);
         Editorcamera.position.set(0, 0, 35);
@@ -216,7 +215,7 @@ function main() {
         };
      
         const materials = {
-            ground: new THREE.MeshPhysicalMaterial({ color: 0x98E1E2 }),
+            ground: new THREE.MeshPhysicalMaterial({ color: 0xF2D4C2 }),
             bouquetLower: new THREE.MeshBasicMaterial({ map: Bouquettexture1, ...commonMaterialProps }),
             bouquetUpper: new THREE.MeshBasicMaterial({ map: Bouquettexture2, ...commonMaterialProps }),
             ribbon: new THREE.MeshBasicMaterial({ map: ribbonTexture, ...commonMaterialProps }) 
@@ -280,9 +279,6 @@ function main() {
     
                 // Remove object from scene
                 Editorscene.remove(object);
-                // console.log(`Mesh with UUID ${hoveredMeshUUID} removed from the scene.`);
-    
-                // Clear hoveredMesh and hoveredMeshUUID after removal
                 hoveredMesh = null;
                 hoveredMeshUUID = null;
             } else {
@@ -418,6 +414,7 @@ function main() {
 
 main();
 
+
 async function saveFlowerPositions() {
     const flowers = Editorscene.children
         .filter(child => child.type === "Mesh" && 
@@ -457,16 +454,6 @@ async function saveFlowerPositions() {
         if (result.success) {
             const shareableLink = `${window.location.origin}/create?id=${giftcardId}`;
 
-            const defaults = {
-                spread: 360,
-                ticks: 100,
-                gravity: 0,
-                decay: 0.94,
-                startVelocity: 30,
-                shapes: ["heart"],
-                colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
-              };
-
             Swal.fire({
                 title: "Your Link is Ready!",
                 background:"#DBD0B7",
@@ -486,9 +473,39 @@ async function saveFlowerPositions() {
                         color: "#000000",
                         background:"#DBD0B7",
                         text: "Send it to your beloved friend!",
-                        iconColor:"#D9B2A9",
+                        iconColor:"#008000",
                         icon: "success"
                     });
+
+                    const defaults = {
+                        spread: 360,
+                        ticks: 50,
+                        gravity: 0,
+                        decay: 0.94,
+                        startVelocity: 30,
+                        shapes: ["heart"],
+                        colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
+                        zIndex: 99,
+                      };
+                      
+                      confetti({
+                        ...defaults,
+                        particleCount: 50,
+                        scalar: 2,
+                      });
+                      
+                      confetti({
+                        ...defaults,
+                        particleCount: 25,
+                        scalar: 3,
+                      });
+                      
+                      confetti({
+                        ...defaults,
+                        particleCount: 10,
+                        scalar: 4,
+                      });
+
                 }
               });
         } else {
@@ -507,6 +524,35 @@ function generateId() {
 
 // Update event listeners
 document.getElementById('saveButton').addEventListener('click', saveFlowerPositions);
-//document.getElementById('loadButton').addEventListener('click', testtest);
+document.getElementById('loadButton').addEventListener('click', testtest);
 
 
+function testtest () {
+    const defaults = {
+        spread: 360,
+        ticks: 100,
+        gravity: 0,
+        decay: 0.94,
+        startVelocity: 30,
+        shapes: ["heart"],
+        colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
+      };
+      
+      confetti({
+        ...defaults,
+        particleCount: 50,
+        scalar: 2,
+      });
+      
+      confetti({
+        ...defaults,
+        particleCount: 25,
+        scalar: 3,
+      });
+      
+      confetti({
+        ...defaults,
+        particleCount: 10,
+        scalar: 4,
+      });
+}
