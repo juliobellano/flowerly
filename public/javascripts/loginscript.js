@@ -1,4 +1,3 @@
-// login backend redirect
 // Select the form element
 const loginForm = document.querySelector("form")
 

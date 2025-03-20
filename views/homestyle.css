@@ -73,9 +73,6 @@ img {
 .hero {
      background-color: antiquewhite;
      min-height: 100vh;
-     /* display: grid;
-                    grid-template-columns: 1fr 1fr; */
-     /* margin: 20px; */
 }
 .hero .content {
      display: flex;
@@ -112,10 +109,7 @@ body > main > section > div > div.hero-details > p {
      border-color: black;
 }
 
-/* .hero-image {
-                    background-color: aqua;
-                    width: 300px;
-               } */
+
 .demo-preview > h2 {
      display: flex;
      justify-content: center;

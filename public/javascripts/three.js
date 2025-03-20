@@ -2,7 +2,6 @@ console.log('Three.js script loading...');
 
 import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js';
-//import GUI from 'lil-gui';
 
 console.log('THREE object:', THREE);
 console.log('OrbitControls:', OrbitControls);
@@ -14,16 +13,7 @@ colorTexture.colorSpace = THREE.SRGBColorSpace;
 const material = new THREE.MeshPhysicalMaterial({ map: colorTexture });
 material.side = THREE.DoubleSide
 
-/*const gui = new GUI({width:200, title:'Change Background Color'});
-gui.hide();
-window.addEventListener('keydown', (event) => {
-    if(event.key == 'h'){
-        gui.show(gui._hidden);
-    }
-});*/
-
 let hoveredMeshUUID = null;
-let bouquetBoundary;
 const geometries = [
     'textures/blue.PNG',
     'textures/kindaPink.PNG',
@@ -181,7 +171,7 @@ function main() {
     
             // Create description
             const descriptionElement = document.createElement('div');
-            descriptionElement.innerText = 'Audrey ' + (i + 1);
+            descriptionElement.innerText = 'Flower ' + (i + 1);
             element.appendChild(descriptionElement);
     
             content.appendChild(element);
@@ -213,7 +203,6 @@ function main() {
         makeEditorScene();
         loadFromUrl();
 
-     
         const textureLoader = new THREE.TextureLoader();
         const Bouquettexture1 = new THREE.TextureLoader().load('textures/lowerLayer.PNG');
         const Bouquettexture2 = new THREE.TextureLoader().load('textures/upperLayer.PNG');
@@ -248,11 +237,6 @@ function main() {
         bouquetUpper.position.set(0, 4.3, 3);
         ribbon.position.set(0, -2, 3);
         Editorscene.add(ground, bouquetLower, bouquetUpper, ribbon);
-     
-        /*const params = { color: materials.ground.color.getStyle() };
-        gui.addColor(params, 'color')
-            .name('Ground Color')
-            .onChange((value) => materials.ground.color.set(value));*/
      }
 
     function putOnCanvas(arr) {
@@ -434,8 +418,6 @@ function main() {
 
 main();
 
-
-
 async function saveFlowerPositions() {
     const flowers = Editorscene.children
         .filter(child => child.type === "Mesh" && 
@@ -474,7 +456,41 @@ async function saveFlowerPositions() {
         
         if (result.success) {
             const shareableLink = `${window.location.origin}/create?id=${giftcardId}`;
-            alert(`Design saved! Share this link with your friends:\n${shareableLink}`);
+
+            const defaults = {
+                spread: 360,
+                ticks: 100,
+                gravity: 0,
+                decay: 0.94,
+                startVelocity: 30,
+                shapes: ["heart"],
+                colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
+              };
+
+            Swal.fire({
+                title: "Your Link is Ready!",
+                background:"#DBD0B7",
+                color: "#000000",
+                icon: "info",
+                iconColor:"#EE4B2B",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Copy Link!"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    navigator.clipboard.writeText(shareableLink);
+                    
+                    Swal.fire({
+                        title: "Link Copied!",
+                        color: "#000000",
+                        background:"#DBD0B7",
+                        text: "Send it to your beloved friend!",
+                        iconColor:"#D9B2A9",
+                        icon: "success"
+                    });
+                }
+              });
         } else {
             alert('Error saving flowers: ' + result.error);
         }
@@ -484,8 +500,6 @@ async function saveFlowerPositions() {
     }
 }
 
-
-
 //generate unique id
 function generateId() {
     return Math.floor(100000 + Math.random() * 900000).toString();
@@ -493,7 +507,6 @@ function generateId() {
 
 // Update event listeners
 document.getElementById('saveButton').addEventListener('click', saveFlowerPositions);
-//document.getElementById('loadButton').addEventListener('click', loadFlowerPositions);
-document.getElementById('loadButton').addEventListener('click', () => loadFromUrl('test-giftcard-1'));
+//document.getElementById('loadButton').addEventListener('click', testtest);
 
 
