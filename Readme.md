@@ -1,3 +1,5 @@
+
+
 # Flowerly - Virtual Flower Arrangement App
 
 A web application that allows users to create and share virtual flower arrangements as digital gifts.
@@ -54,10 +56,20 @@ A web application that allows users to create and share virtual flower arrangeme
 ## Usage
 
 1. Visit the home page and log in
-2. Navigate to the "Create" page
-3. Select flowers from the left panel
+   <img width="1440" alt="Screenshot 2025-03-21 at 22 55 29" src="https://github.com/user-attachments/assets/4d87c37d-9471-407b-bd6d-4832ca5ea468" />
+
+2. Navigate to the "Log In" page
+<img width="1440" alt="Screenshot 2025-03-21 at 22 58 51" src="https://github.com/user-attachments/assets/45676ca4-9f5f-4a17-9007-b51270f2a055" />
+
+3. Start customizing flowers from the left panel
+   <img width="1440" alt="Screenshot 2025-03-21 at 22 59 02" src="https://github.com/user-attachments/assets/26889f5e-70fa-4aa7-9db1-0498a856a85e" />
+   
 4. Arrange flowers on the canvas by dragging
+   <img width="1440" alt="Screenshot 2025-03-21 at 22 59 19" src="https://github.com/user-attachments/assets/95e7adda-bec3-45a7-903e-828ba58181ec" />
+
 5. Click "Save Design" to generate a shareable link
+   <img width="1440" alt="Screenshot 2025-03-21 at 22 59 28" src="https://github.com/user-attachments/assets/28a01a37-2b5d-4bbd-8ff7-4e6b6a057f3a" />
+
 6. Share the link with friends so they can view your creation
 
 ## Future Enhancements
