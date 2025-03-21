@@ -1,60 +1,69 @@
-# Flowerly
+# Flowerly - Virtual Flower Arrangement App
 
-Flowerly is a custom flower design application that lets users create and personalize virtual flowers and share them via unique links. Recipients can open these links to view the specially crafted designs. The project is built with Node.js, Express, CSS, and MongoDB, with secure authentication powered by Auth0 and Passport. Flowerly is designed to be cross-platform, working seamlessly on Android devices, web browsers, and as a web app.
+A web application that allows users to create and share virtual flower arrangements as digital gifts.
 
 ## Features
 
-- **Custom Flower Designer:** Create unique, personalized flower designs.
-- **Personalized Sharing:** Each design generates a unique URL that you can send to friends or loved ones.
-- **Secure Authentication:** User accounts are protected using Auth0 and Passport.
-- **Multi-Platform Compatibility:** Enjoy Flowerly on Android, web browsers, and as a progressive web app.
-- **Robust Data Storage:** Flower designs and user data are securely stored in MongoDB.
+- **Flower Selection**: Choose from a variety of flower designs
+- **Interactive Canvas**: Drag and drop flowers to create custom arrangements
+- **Sharing**: Generate a unique code to share your creation with friends
+- **Authentication**: Log in with Google or email/password
+- **Persistence**: Save your designs to continue working on them later
 
-## Technology Stack
+## Technologies Used
 
-- **Backend:** Node.js and Express.js
-- **Frontend:** HTML, CSS, and JavaScript
-- **Database:** MongoDB
-- **Authentication:** Auth0 and Passport
-- **Deployment:** Compatible with Android, web browsers, and as a web app
+- **Frontend**: HTML, CSS, JavaScript, Three.js for 3D rendering
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **Authentication**: Passport.js with Google OAuth
+- **Deployment**: Hosted via Ngrok
 
-## Installation
+## Setup Instructions
 
-### Prerequisites
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Create a `.env` file with the following variables:
+   ```
+   PORT=3000
+   MONGO_URI=your_mongodb_connection_string
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   JWT_SECRET=your_jwt_secret
+   BASE_URL=http://localhost:3000 (or your deployed URL)
+   ```
+4. Start the server:
+   ```
+   npm start
+   ```
 
-- [Node.js](https://nodejs.org/en/) installed on your machine
-- A running instance of MongoDB (local or remote)
-- An Auth0 account set up for authentication
+## Project Structure
 
-### Setup
+- `app.js`: Main application file
+- `public/`: Static assets
+  - `javascripts/`: JavaScript files including Three.js implementation
+  - `stylesheets/`: CSS files
+  - `textures/`: Flower textures and images
+- `routes/`: Express route handlers
+- `views/`: HTML templates
+- `models/`: Database models
+- `passport/`: Authentication configuration
 
-1. **Clone the Repository:**
+## Usage
 
-   ```bash
-   git clone https://github.com/juliobellano/flowerly.git
-   cd flowerly
-   
-2. **Install Dependencies:**
+1. Visit the home page and log in
+2. Navigate to the "Create" page
+3. Select flowers from the left panel
+4. Arrange flowers on the canvas by dragging
+5. Click "Save Design" to generate a shareable link
+6. Share the link with friends so they can view your creation
 
-     ```bash
-     npm install
+## Future Enhancements
 
-3. **Configure Environment Variables:**
-
-  Create a .env file in the root directory with the following keys (replace the placeholders with your actual configuration):
-  
-      ```bash
-      MONGODB_URI=your_mongodb_connection_string
-      AUTH0_CLIENT_ID=your_auth0_client_id
-      AUTH0_CLIENT_SECRET=your_auth0_client_secret
-      AUTH0_DOMAIN=your_auth0_domain
-      SESSION_SECRET=your_session_secret
-
-
-4. **Start the Application:**
-
-      ```bash
-      npm start
-
-##The app will run on http://localhost:3000 by default.
-
+- Add more flower varieties
+- Implement a "bouquet template" feature
+- Add ability to add text messages
+- Improve mobile responsiveness
+- Add social sharing options

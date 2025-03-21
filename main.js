@@ -1,5 +1,5 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
 
 // Create a BrowserWindow
 const createWindow = () => {
@@ -12,20 +12,20 @@ const createWindow = () => {
   });
 
   // Load the URL (e.g., Express server URL)
-  win.loadURL('https://new-refined-hornet.ngrok-free.app');
+  win.loadURL("https://new-refined-hornet.ngrok-free.app");
 };
 
 // App lifecycle
 app.whenReady().then(() => {
   createWindow();
 
-  app.on('activate', () => {
+  app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit(); // macOS keeps the app running unless explicitly quit
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") app.quit(); // macOS keeps the app running unless explicitly quit
 });
 
 console.log(`App is running on electron`);
